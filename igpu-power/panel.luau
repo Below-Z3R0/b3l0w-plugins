@@ -1,7 +1,7 @@
 --!nonstrict
 -- iGPU Power panel v4
 -- Dropdown con 3 botones: Performance / Balanced / Low-Power
--- Cada botón ejecuta /usr/local/bin/igpu-power-menu.sh <mode>
+-- Cada botón ejecuta b3l0w plugin-exec igpu-power-menu <mode>
 -- With structured logging via noctalia.log()
 
 local MODES = {
@@ -24,7 +24,7 @@ end
 
 local function executeMode(mode)
     logEvent("execute_mode", { mode = mode })
-    noctalia.runAsync("/usr/local/bin/igpu-power-menu.sh " .. mode)
+    noctalia.runAsync("b3l0w plugin-exec igpu-power-menu " .. mode)
 end
 
 local function modeButton(m)
