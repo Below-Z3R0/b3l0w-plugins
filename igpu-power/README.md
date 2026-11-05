@@ -3,11 +3,14 @@
 Plugin de Noctalia `user/igpu-power`: menú para cambiar el perfil de la iGPU
 (performance / balanced / low-power) y editar `modprobe.d`.
 
-## Dependencia
+## Backend
 
-`panel.luau` llama a `/usr/local/bin/igpu-power-menu.sh`. El script está en
-este repo; para instalarlo:
+El script `igpu-power-menu.sh` vive en **`b3l0w-cli/internal/plugins/scripts/`**.
+Para instalarlo:
 
 ```bash
-sudo install -m755 igpu-power-menu.sh /usr/local/bin/igpu-power-menu.sh
+b3l0w plugins scripts
 ```
+
+Eso lo copia a `/usr/local/bin/igpu-power-menu.sh`, que es la ruta que usa
+`panel.luau`.
