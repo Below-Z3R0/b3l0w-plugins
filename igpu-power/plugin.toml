@@ -1,6 +1,6 @@
 # iGPU Power — menú para cambiar entre performance/balanced/low-power
 # y editar /etc/modprobe.d/i915-performance.conf (requiere reboot)
-id = "user/igpu-power"
+id = "b3l0w/igpu-power"
 name = "iGPU Power"
 version = "1.0.0"
 plugin_api = 9

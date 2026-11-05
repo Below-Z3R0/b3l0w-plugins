@@ -1,5 +1,5 @@
 # Hover Zones — abre paneles al pasar el mouse sobre widgets invisibles
-id = "user/hover-zones"
+id = "b3l0w/hover-zones"
 name = "Hover Zones"
 version = "1.0.0"
 plugin_api = 9
