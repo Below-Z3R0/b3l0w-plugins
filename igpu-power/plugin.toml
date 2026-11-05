@@ -1,0 +1,33 @@
+# iGPU Power — menú para cambiar entre performance/balanced/low-power
+# y editar /etc/modprobe.d/i915-performance.conf (requiere reboot)
+id = "user/igpu-power"
+name = "iGPU Power"
+version = "1.0.0"
+plugin_api = 9
+author = "b3low-z3r0"
+license = "MIT"
+dependencies = []
+tags = ["bar", "panel", "system", "hardware"]
+icon = "bolt"
+description = "Menu para cambiar perfil iGPU (performance/balanced/low-power) y configurar modprobe.d."
+
+# Bar widget: boton que abre el panel al hacer click
+[[widget]]
+id = "button"
+entry = "widget.luau"
+
+  [[widget.setting]]
+  key = "glyph"
+  type = "glyph"
+  label_key = "settings.glyph.label"
+  description_key = "settings.glyph.description"
+  default = "bolt"
+
+# Panel dropdown con las 3 opciones
+[[panel]]
+id = "menu"
+entry = "panel.luau"
+width = 320
+height = 220
+placement = "attached"
+open_near_click = true

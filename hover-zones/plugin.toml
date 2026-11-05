@@ -1,0 +1,36 @@
+# Hover Zones — abre paneles al pasar el mouse sobre widgets invisibles
+id = "user/hover-zones"
+name = "Hover Zones"
+version = "1.0.0"
+plugin_api = 9
+author = "b3low-z3r0"
+license = "MIT"
+dependencies = []
+tags = ["bar", "utility"]
+icon = "eye"
+description = "Open Noctalia panels by hovering over invisible bar widgets. Simula screen edges de Caelestia."
+
+[[widget]]
+id = "hover_zone"
+entry = "hover_zone.luau"
+
+  [[widget.setting]]
+  key = "panel"
+  type = "string"
+  label_key = "settings.panel.label"
+  description_key = "settings.panel.description"
+  default = "launcher"
+
+  [[widget.setting]]
+  key = "context"
+  type = "string"
+  label_key = "settings.context.label"
+  description_key = "settings.context.description"
+  default = ""
+
+  [[widget.setting]]
+  key = "close_on_leave"
+  type = "bool"
+  label_key = "settings.close_on_leave.label"
+  description_key = "settings.close_on_leave.description"
+  default = false

@@ -1,0 +1,16 @@
+{
+  "settings": {
+    "panel": {
+      "label": "Panel",
+      "description": "Noctalia panel to open on hover (launcher, control-center, notifications, etc.)"
+    },
+    "context": {
+      "label": "Context",
+      "description": "Optional tab/section context for the panel (e.g. 'home', 'media', 'audio')"
+    },
+    "close_on_leave": {
+      "label": "Close on leave",
+      "description": "Close the panel when mouse leaves the widget"
+    }
+  }
+}
