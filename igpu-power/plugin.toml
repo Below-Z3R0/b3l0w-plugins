@@ -3,7 +3,7 @@
 id = "b3l0w/igpu-power"
 name = "iGPU Power"
 version = "1.0.0"
-plugin_api = 9
+plugin_api = 43
 author = "b3low-z3r0"
 license = "MIT"
 dependencies = []

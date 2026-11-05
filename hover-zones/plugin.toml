@@ -2,7 +2,7 @@
 id = "b3l0w/hover-zones"
 name = "Hover Zones"
 version = "1.0.0"
-plugin_api = 9
+plugin_api = 43
 author = "b3low-z3r0"
 license = "MIT"
 dependencies = []
@@ -21,16 +21,4 @@ entry = "hover_zone.luau"
   description_key = "settings.panel.description"
   default = "launcher"
 
-  [[widget.setting]]
-  key = "context"
-  type = "string"
-  label_key = "settings.context.label"
-  description_key = "settings.context.description"
-  default = ""
 
-  [[widget.setting]]
-  key = "close_on_leave"
-  type = "bool"
-  label_key = "settings.close_on_leave.label"
-  description_key = "settings.close_on_leave.description"
-  default = false

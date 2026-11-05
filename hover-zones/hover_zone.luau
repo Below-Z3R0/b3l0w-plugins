@@ -2,18 +2,18 @@
 -- Hover Zone widget v11 - producción con debug controlable vía IPC
 --
 -- Debug commands:
---   noctalia msg plugin user/hover-zones:hover_zone all enable-debug
---   noctalia msg plugin user/hover-zones:hover_zone all disable-debug
---   noctalia msg plugin user/hover-zones:hover_zone all log-config
---   noctalia msg plugin user/hover-zones:hover_zone all reset-stats
+--   noctalia msg plugin b3l0w/hover-zones:hover_zone all enable-debug
+--   noctalia msg plugin b3l0w/hover-zones:hover_zone all disable-debug
+--   noctalia msg plugin b3l0w/hover-zones:hover_zone all log-config
+--   noctalia msg plugin b3l0w/hover-zones:hover_zone all reset-stats
 --
 -- Auto-debug si env HOVER_ZONES_DEBUG=1 está seteada al cargar
 
 local panel = noctalia.getConfig("panel") or "launcher"
-local context = noctalia.getConfig("context") or ""
 
 -- PNG transparente 1x1
-local IMG = "/home/b3low-z3r0/.config/noctalia/transparent.png"
+local HOME = (noctalia.getenv and noctalia.getenv("HOME")) or ""
+local IMG = HOME .. "/.config/noctalia/transparent.png"
 
 -- Debug state: configurable via onIpc
 local debug_enabled = false
@@ -43,7 +43,6 @@ end
 
 local function logConfig()
     noctalia.log("[hover-zones v11:CONFIG] panel=" .. panel)
-    noctalia.log("[hover-zones v11:CONFIG] context=" .. tostring(context))
     noctalia.log("[hover-zones v11:CONFIG] debug=" .. tostring(debug_enabled))
     noctalia.log("[hover-zones v11:CONFIG] update_count=" .. state.update_count)
     noctalia.log("[hover-zones v11:CONFIG] hover_count=" .. state.hover_count)
@@ -60,7 +59,7 @@ end
 -- El archivo se prefiere sobre `noctalia.state`: el state NO se comparte
 -- entre plugins, así que desde acá no se puede leer lo que publica el plugin
 -- dueño del panel.
-local PANEL_ENTRY_FILE = "~/.local/state/noctalia/panel-entries.json"
+local PANEL_ENTRY_FILE = HOME .. "/.local/state/noctalia/panel-entries.json"
 
 local function resolvedPanel()
     local base = noctalia.getConfig("panel") or panel or "launcher"
@@ -82,7 +81,6 @@ local function togglePanel()
     local target = resolvedPanel()
     dbg("INFO", "togglePanel called", {
         panel = target,
-        context = context,
         time = fmt_time(t),
         hover_count = state.hover_count,
     })

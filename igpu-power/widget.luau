@@ -14,7 +14,7 @@ function update()
 end
 
 function onClick()
-    noctalia.togglePanel("user/igpu-power:menu")
+    noctalia.togglePanel("b3l0w/igpu-power:menu")
 end
 
 render()

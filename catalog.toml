@@ -57,26 +57,26 @@ tags = []
 id = "b3l0w/hover-zones"
 name = "Hover Zones"
 version = "1.0.0"
-updated_at = 1793860572
+updated_at = 1793914400
 added_at = 1793855969
 author = "b3low-z3r0"
 license = "MIT"
 icon = "eye"
 description = "Open Noctalia panels by hovering over invisible bar widgets. Simula screen edges de Caelestia."
-plugin_api = 9
+plugin_api = 43
 tags = ["bar", "utility"]
 
 [[plugin]]
 id = "b3l0w/igpu-power"
 name = "iGPU Power"
 version = "1.0.0"
-updated_at = 1793863773
+updated_at = 1793914402
 added_at = 1793855979
 author = "b3low-z3r0"
 license = "MIT"
 icon = "bolt"
 description = "Menu para cambiar perfil iGPU (performance/balanced/low-power) y configurar modprobe.d."
-plugin_api = 9
+plugin_api = 43
 tags = ["bar", "panel", "system", "hardware"]
 
 [[plugin]]
