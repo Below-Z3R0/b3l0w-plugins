@@ -1,0 +1,227 @@
+{
+  "plugin": {
+    "title": "b3l0w Audit",
+    "description": "Avisos de Arch/CachyOS, actualizaciones pendientes de Noctalia y Umbriel, y si el CLI b3l0w necesita recompilarse."
+  },
+  "settings": {
+    "check_hours": {
+      "label": "Intervalo de escaneo (horas)",
+      "desc": "Horas entre corridas de arch-audit contra el tracker del Arch Security Team."
+    },
+    "updates_minutes": {
+      "label": "Intervalo de actualizaciones (minutos)",
+      "desc": "Minutos entre pacman -Qu y la comprobación del CLI b3l0w."
+    },
+    "notify_new": {
+      "label": "Avisar de avisos nuevos",
+      "desc": "Toast cuando un chequeo encuentra avisos que antes no estaban."
+    },
+    "notify_min_severity": {
+      "label": "Severidad mínima para avisar",
+      "desc": "Los avisos por debajo de esta severidad no generan notificación.",
+      "critical": "Crítica",
+      "high": "Alta",
+      "medium": "Media",
+      "low": "Baja"
+    },
+    "ignore_packages": {
+      "label": "Paquetes ignorados",
+      "desc": "Un aviso se oculta sólo cuando todos sus paquetes están en esta lista."
+    },
+    "show_label": {
+      "label": "Mostrar el conteo en la barra",
+      "desc": "Apagado = solo el icono."
+    },
+    "hide_when_clean": {
+      "label": "Ocultar cuando está limpio",
+      "desc": "Oculta el widget cuando no hay avisos ni actualizaciones."
+    },
+    "glyph": {
+      "label": "Icono de la barra",
+      "desc": "Glyph que se usa mientras hay avisos. Sin avisos se muestra un escudo con tilde."
+    },
+    "panel_mode": {
+      "label": "Estilo del panel",
+      "desc": "Panel chico pegado o flotante grande.",
+      "compact": "Compacto (pegado)",
+      "float": "Grande (flotante)"
+    },
+    "animations": {
+      "label": "Animaciones",
+      "desc": "Filas escalonadas al cambiar de pestaña o página."
+    },
+    "density": {
+      "label": "Densidad",
+      "desc": "Alto de las filas.",
+      "compact": "Compacta",
+      "cozy": "Media",
+      "comfortable": "Cómoda"
+    },
+    "cli_bin": {
+      "label": "Binario del CLI b3l0w",
+      "desc": "Ruta del binario compilado. Su mtime se compara con el .go más nuevo."
+    },
+    "cli_repo": {
+      "label": "Repo de b3l0w",
+      "desc": "Carpeta con las fuentes Go; Actualizar todo corre go build ./cmd/b3l0w acá."
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+    "settings.layout_mode.auto": "Automático",
+    "settings.layout_mode.fixed": "Fijo"
+  },
+  "panel": {
+    "title": "Auditoría",
+    "tab": {
+      "vulns": "Vulnerabilidades",
+      "updates": "Actualizaciones"
+    },
+    "working": "trabajando…",
+    "clean": "Sin avisos conocidos",
+    "never_checked": "Sin chequear todavía",
+    "refresh": "Chequear ahora",
+    "settings": "Ajustes del plugin",
+    "close": "Cerrar",
+    "update_all": "Actualizar todo",
+    "update_all_hint": "Lista pendientes y recompila el CLI",
+    "update_all_hint_stale": "CLI desactualizado: Actualizar todo lo recompila",
+    "update_all_tip": "Refresca la lista y corre go build del CLI b3l0w. Nunca instala paquetes sin confirmación.",
+    "fixed": "Corregido en {version}",
+    "no_fix": "Sin versión que lo corrija",
+    "cves": "CVEs",
+    "no_cves": "ninguna listada",
+    "open_advisory": "Abrir aviso",
+    "copy_upgrade": "Copiar upgrade",
+    "copy_install": "Copiar comando de instalación",
+    "missing": "arch-audit no está instalado: sólo resultados cacheados",
+    "fix_only": "Con arreglo",
+    "fix_only_tip": "Sólo avisos que ya tienen versión corregida.",
+    "filter_empty": "Ningún aviso coincide con estos filtros.",
+    "empty": "Nada para reportar",
+    "page_of": "Página {page}/{pages} · {total} avisos",
+    "confirm": "Confirmar",
+    "update_one": "Actualizar",
+    "update_one_tip": "Corre pkexec pacman -S --needed para este paquete. Arch no soporta actualizaciones parciales: conviene el upgrade completo.",
+    "copy_pkg": "Copiar comando",
+    "up_to_date": "Al día",
+    "more_rows": "+{count} más pendientes (lista completa en una terminal)",
+    "checked": "Chequeado {age}",
+    "copied": "Copiado",
+    "unknown_action": "Acción desconocida: {action}",
+    "noctalia": {
+      "title": "Noctalia",
+      "sub": "paquete {installed} · binario {version}"
+    },
+    "umbriel": {
+      "title": "Umbriel",
+      "sub": "paquete {installed} · portal {portal}"
+    },
+    "updates": {
+      "at": "{total} pendientes · {source} · listado {age}"
+    },
+    "system": {
+      "title": "Sistema",
+      "sub": "otros paquetes pendientes ({source})"
+    },
+    "cli": {
+      "title": "CLI b3l0w",
+      "stale": "Necesita recompilar",
+      "fresh": "Al día",
+      "ages": "binario {binary} · fuente más nueva {source}",
+      "source": "{path}",
+      "rebuild": "Recompilar",
+      "rebuild_tip": "Corre go build ./cmd/b3l0w contra la ruta del binario de los ajustes.",
+      "copy": "Copiar comando de build"
+    }
+  },
+  "count": {
+    "advisory": {
+      "one": "1 aviso",
+      "other": "{count} avisos"
+    },
+    "pending": {
+      "one": "1 pendiente",
+      "other": "{count} pendientes"
+    },
+    "ignored": {
+      "one": "1 ignorado",
+      "other": "{count} ignorados"
+    },
+    "new": {
+      "one": "1 aviso",
+      "other": "{count} avisos"
+    }
+  },
+  "severity": {
+    "all": "Todas las severidades",
+    "critical": "Crítica",
+    "high": "Alta",
+    "medium": "Media",
+    "low": "Baja",
+    "unknown": "Desconocida"
+  },
+  "status": {
+    "vulnerable": "Vulnerable",
+    "unknown": "Desconocido",
+    "fixed": "Corregido",
+    "not_affected": "No afectado",
+    "testing": "En pruebas"
+  },
+  "time": {
+    "never": "nunca",
+    "just_now": "recién",
+    "minutes_ago": {
+      "one": "hace {count} minuto",
+      "other": "hace {count} minutos"
+    },
+    "hours_ago": {
+      "one": "hace {count} hora",
+      "other": "hace {count} horas"
+    },
+    "days_ago": {
+      "one": "hace {count} día",
+      "other": "hace {count} días"
+    }
+  },
+  "notify": {
+    "title": "Avisos de seguridad",
+    "body": {
+      "one": "1 aviso nuevo afecta a {packages}.",
+      "other": "{count} avisos nuevos afectan a {packages}."
+    },
+    "some_packages": "tus paquetes instalados"
+  },
+  "service": {
+    "error": {
+      "missing": "arch-audit no está instalado.",
+      "exit": "arch-audit falló: {detail}",
+      "json": "arch-audit devolvió JSON inválido.",
+      "no_detail": "sin detalle"
+    }
+  },
+  "updates": {
+    "invalid_package": "Nombre de paquete inválido.",
+    "no_pkexec": "pkexec no está disponible: copiá el comando y corrélo en una terminal.",
+    "pkg_done": "{name} actualizado.",
+    "pkg_fail": "No se pudo actualizar {name}: {detail}",
+    "toast_summary": "CLI: {cli} · {pending} actualizaciones pendientes",
+    "cli_uptodate": "ya estaba al día",
+    "cli_rebuilt": "recompilado",
+    "cli_failed_detail": "go build falló: {detail}"
+  },
+  "widget": {
+    "counts_none": "Ninguno",
+    "updates_value": "Noctalia {noctalia} · Umbriel {umbriel} · CLI: {cli}",
+    "tooltip": {
+      "state": "Avisos",
+      "updates": "Actualizaciones",
+      "new": "Nuevos desde el último chequeo",
+      "checked": "Chequeado",
+      "hint": "Click izq. detalle · Click der. chequear ahora"
+    }
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+  "settings.layout_mode.auto": "Automático",
+  "settings.layout_mode.fixed": "Fijo"
+}

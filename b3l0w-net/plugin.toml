@@ -1,0 +1,143 @@
+# b3l0w Net — estado de Tailscale y Sunshine en un solo panel, sin apagar nada.
+#
+# Pestaña Tailscale: `tailscale status --json` (backend, self, pares con IP,
+# Online, Relay/CurAddr, OS y último visto), `tailscale ip -4`, el nombre
+# MagicDNS, `netcheck` bajo demanda y `ping -c 3` por par. Los pares que van por
+# relay DERP se marcan en ámbar y se explican.
+#
+# Pestaña Sunshine: unit `app-dev.lizardbyte.app.Sunshine.service`, puertos de
+# `ss`, chequeo HTTP contra el panel web, encoder en uso leído del log, última
+# sesión (CLIENT CONNECTED y si hubo Undo Cmd / CLIENT DISCONNECTED después) y
+# avisos si `capture` no es `wlr` o `output_name` no existe como salida.
+#
+# Regla dura: NINGÚN botón para, deshabilita ni reinicia un servicio. El único
+# que escribe sobre un unit corre `reset-failed` + `start` y aparece sólo cuando
+# el unit está en `failed`, donde no hay sesión que cortar. Todo lo que
+# obligaría a parar algo se muestra como texto.
+
+id = "b3l0w/net"
+name = "b3l0w Net"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "wifi"
+dependencies = ["tailscale", "systemctl", "ss", "curl", "xdg-open", "umbriel"]
+tags = ["tailscale", "sunshine", "network", "bar", "panel", "service", "indicator"]
+
+# ── Sondeo ───────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "refresh_seconds"
+type = "int"
+label_key = "settings.refresh_seconds.label"
+description_key = "settings.refresh_seconds.desc"
+default = 20
+min = 5
+max = 300
+
+# ── Barra ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "show_label"
+type = "bool"
+label_key = "settings.show_label.label"
+description_key = "settings.show_label.desc"
+default = false
+
+[[setting]]
+key = "hide_when_offline"
+type = "bool"
+label_key = "settings.hide_when_offline.label"
+description_key = "settings.hide_when_offline.desc"
+default = false
+
+[[setting]]
+key = "glyph"
+type = "glyph"
+label_key = "settings.glyph.label"
+description_key = "settings.glyph.desc"
+default = "wifi"
+
+# ── Panel ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+label_key = "settings.panel_mode.label"
+description_key = "settings.panel_mode.desc"
+default = "compact"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+]
+
+[[setting]]
+key = "animations"
+type = "bool"
+label_key = "settings.animations.label"
+description_key = "settings.animations.desc"
+default = true
+
+[[setting]]
+key = "density"
+type = "select"
+label_key = "settings.density.label"
+description_key = "settings.density.desc"
+default = "cozy"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+[[service]]
+id = "service"
+entry = "service.luau"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+# Dos paneles con el mismo entry: el host es dueño del tamaño, así que el modo
+# compacto/flotante se resuelve abriendo uno u otro.
+[[panel]]
+id = "panel"
+entry = "panel_compact.luau"
+width = 560
+# El host mide el árbol y ajusta la superficie: el panel queda alto lo que
+# necesita el contenido y nunca más de max_height. Con `height = 720` fijo
+# sobraba espacio vacío abajo cuando había poco contenido.
+height = "content"
+max_height = 1000
+placement = "attached"
+# `top_right` y no `auto`: con `auto` el anclaje queda mal medido (el panel
+# aparece angosto o pegado a un borde incorrecto).
+position = "top_right"
+open_near_click = true
+capture_keys = ["Left", "Right", "Prior", "Next"]
+
+[[panel]]
+id = "float"
+entry = "float.luau"
+width = 1180
+height = "content"
+max_height = 1100
+# `attached` (layer-shell) y no `floating`: con `floating` el panel abre
+# como toplevel normal y queda DETRÁS de una ventana maximizada. Con
+# layer-shell se pinta en la capa superior, siempre arriba.
+placement = "attached"
+position = "top_right"
+capture_keys = ["Left", "Right", "Prior", "Next"]
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

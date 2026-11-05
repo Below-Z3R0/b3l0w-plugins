@@ -1,0 +1,214 @@
+{
+  "plugin": {
+    "title": "b3l0w Net",
+    "description": "Estado de Tailscale y Sunshine: pares, relay DERP, puertos, encoder y última sesión. No para ni reinicia servicios."
+  },
+  "settings": {
+    "refresh_seconds": {
+      "label": "Intervalo de sondeo (segundos)",
+      "desc": "Cada cuánto se leen tailscale status, el unit de Sunshine y el log."
+    },
+    "show_label": {
+      "label": "Mostrar el conteo en la barra",
+      "desc": "Apagado = solo el icono."
+    },
+    "hide_when_offline": {
+      "label": "Ocultar cuando Tailscale está offline",
+      "desc": "Oculta el widget si el backend no está en Running."
+    },
+    "glyph": {
+      "label": "Icono de la barra",
+      "desc": "Glyph cuando todo está en orden. Offline, failed y relay usan iconos propios."
+    },
+    "panel_mode": {
+      "label": "Estilo del panel",
+      "desc": "Panel chico pegado o flotante grande.",
+      "compact": "Compacto (pegado)",
+      "float": "Grande (flotante)"
+    },
+    "animations": {
+      "label": "Animaciones",
+      "desc": "Entrada escalonada de las tarjetas al cambiar de pestaña."
+    },
+    "density": {
+      "label": "Densidad",
+      "desc": "Alto de las filas de par.",
+      "compact": "Compacta",
+      "cozy": "Media",
+      "comfortable": "Cómoda"
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+    "settings.layout_mode.auto": "Automático",
+    "settings.layout_mode.fixed": "Fijo"
+  },
+  "panel": {
+    "title": "b3l0w Net",
+    "tab": {
+      "tailscale": "Tailscale",
+      "sunshine": "Sunshine"
+    },
+    "loading": "leyendo estado…",
+    "subtitle": "{online}/{total} pares online",
+    "sun_failed_sub": "Sunshine en failed",
+    "refresh": "Actualizar ahora",
+    "settings": "Ajustes del plugin",
+    "close": "Cerrar",
+    "unknown_action": "Acción desconocida: {action}",
+    "working": "trabajando…",
+    "copied": "Copiado",
+    "updated": "Actualizado {age}",
+    "readonly": "sólo lectura: no detiene servicios",
+    "ts": {
+      "self_title": "backend",
+      "online": "online",
+      "offline": "offline",
+      "copy_ip": "Copiar IP",
+      "copy_dns": "Copiar MagicDNS",
+      "magic": "MagicDNS",
+      "ip": "IPv4",
+      "ipv6": "IPv6",
+      "netcheck": "Netcheck",
+      "netcheck_tip": "Corre tailscale netcheck (tarda unos segundos) y muestra UDP, IPv4/IPv6, DERP y port mapping.",
+      "netcheck_idle": "netcheck mide UDP, DERP y port mapping. Tarda unos segundos.",
+      "netcheck_hint": "diagnóstico de red del lado de esta máquina",
+      "netcheck_running": "midiendo…",
+      "netcheck_title": "Netcheck",
+      "peers": "Pares",
+      "from_json": "tailscale status --json",
+      "no_peers": "El tailnet no tiene pares.",
+      "page_of": "Página {page}/{pages} · {total} pares",
+      "relay_chip": "relay {relay}",
+      "direct_chip": "directo",
+      "cur_none": "sin conexión directa",
+      "transport": "camino",
+      "last_seen": "visto {age}",
+      "ping": "Ping",
+      "ping_tip": "tailscale ping -c 3 con timeout de 10 s. Es el test que separa red de Moonlight.",
+      "pinging": "haciendo ping…",
+      "ping_ok": "pong en {ms} ms vía {via}",
+      "ping_fail": "sin respuesta: {detail}",
+      "relay_banner_title": "{count} por relay DERP",
+      "relay_banner_body": "El tráfico sale por un servidor de Tailscale, no directo: la latencia sube y el stream se corta. No se arregla desde acá.",
+      "no_path": "sin camino",
+      "panel.ts.conn_direct": "Conexión directa (sin relay)",
+      "panel.ts.conn_relay": "Vía relay DERP: {relay}",
+      "panel.ts.conn_unknown": "Camino de conexión desconocido",
+      "conn_direct": "Conexión directa (sin relay)",
+      "conn_relay": "Vía relay DERP: {relay}",
+      "conn_unknown": "Camino de conexión desconocido",
+      "health": "Avisos de salud",
+      "prefs": "Preferencias",
+      "pref_dns": "MagicDNS",
+      "pref_routes": "Aceptar rutas de subred",
+      "pref_shields": "Shields up",
+      "pref_exit": "Nodo de salida",
+      "pref_advertise": "Rutas anunciadas",
+      "pref_on": "sí",
+      "pref_off": "no",
+      "pref_none": "ninguno",
+      "pref_exit_tip": "Usar o dejar de usar un nodo de salida",
+      "exit_none": "No hay peers online para usar como nodo de salida"
+    },
+    "sun": {
+      "unit_title": "Sunshine",
+      "ports": "puertos",
+      "web": "web",
+      "no_touch": "Este plugin no para, deshabilita ni reinicia Sunshine. Sólo lee el estado.",
+      "ports_list": "escuchando: {list}",
+      "open_web": "Abrir panel web",
+      "open_web_tip": "Abre",
+      "copy_url": "Copiar URL del panel",
+      "opening": "abriendo el panel web…",
+      "fix": "reset-failed + start",
+      "fix_do": "Confirmar",
+      "fix_tip": "Corre systemctl --user reset-failed y después start. No hace stop, disable ni restart.",
+      "fix_hint": "El unit quedó en failed (crash-loop). Levantarlo requiere limpiar el estado de fallo: reset-failed y start.",
+      "fix_cmd": "systemctl --user reset-failed … && systemctl --user start …",
+      "fix_confirm_text": "Se va a correr ese comando. No corta una sesión: en failed no hay ninguna.",
+      "encoder_title": "Encoder",
+      "encoder_conf": "conf: {value}",
+      "encoder_none": "no aparece en el log",
+      "encoder_ok": "vaapi: sin software ni vulkan en el camino",
+      "encoder_bad": "{value} apareció en el log. En esta máquina (Intel, sin NVIDIA) nvenc falla por cuda y vulkan hace core-dump: fijá encoder = vaapi en sunshine.conf.",
+      "session_title": "Última sesión",
+      "session_live": "en vivo",
+      "session_idle": "terminada",
+      "session_none": "Sin CLIENT CONNECTED en el log.",
+      "session_active": "{stamp} ({age}) sigue abierta",
+      "session_ended": "{stamp} ({age}) · cerrada por {by}",
+      "config_title": "Config",
+      "outputs": "salidas: {list}",
+      "config_ok": "capture, output_name y puertos coinciden con esta máquina.",
+      "warn_capture": "capture = {value}: Sunshine no va a capturar en wlroots. Tiene que ser wlr.",
+      "warn_output": "output_name = {value} no es ninguna salida existente.",
+      "warn_encoder": "{value} en el log: es la causa del crash-loop en esta máquina. Usá encoder = vaapi.",
+      "warn_ports": "faltan puertos: hay {value} de 4 escuchando.",
+      "warn_http": "el panel web respondió {value} (401 o 307 es sano).",
+      "warn_state": "el unit está en failed: mirá el botón de arriba.",
+      "nrestarts": "Reinicios: {n}",
+      "nrestarts_warn": "(el servicio se está reiniciando)"
+    },
+    "copy_diagnostic": "Copiar diagnóstico"
+  },
+  "count": {
+    "peers": {
+      "one": "1 par online",
+      "other": "{count} pares online"
+    },
+    "relayed": {
+      "one": "1 por relay",
+      "other": "{count} por relay"
+    }
+  },
+  "time": {
+    "never": "nunca",
+    "just_now": "recién",
+    "minutes_ago": {
+      "one": "hace {count} minuto",
+      "other": "hace {count} minutos"
+    },
+    "hours_ago": {
+      "one": "hace {count} hora",
+      "other": "hace {count} horas"
+    },
+    "days_ago": {
+      "one": "hace {count} día",
+      "other": "hace {count} días"
+    }
+  },
+  "service": {
+    "error": {
+      "ts_missing": "El CLI de tailscale no está instalado.",
+      "ts_exit": "tailscale status falló: {detail}",
+      "netcheck": "netcheck falló: {detail}",
+      "ping_target": "IP de destino inválida."
+    },
+    "reset_needs_failed": "Sólo se puede reset-failed + start con el unit en failed.",
+    "reset_done": "Sunshine levantado (reset-failed + start).",
+    "reset_fail": "No se pudo levantar Sunshine: {detail}",
+    "prefs": {
+      "ok": "Preferencia actualizada"
+    }
+  },
+  "widget": {
+    "ts_value": "{backend} · {online}/{total} pares",
+    "sun_value": "{state} · {ports} puertos · web {http}",
+    "offline": "off",
+    "tooltip": {
+      "ts": "Tailscale",
+      "sun": "Sunshine",
+      "relay": "Relay DERP",
+      "busy": "trabajando…",
+      "hint": "Click izq. panel · Click der. actualizar",
+      "local_relay": "Este nodo por relay",
+      "health": "Salud",
+      "sun_no_client": "Cliente de Sunshine",
+      "sun_no_client_v": "ninguno conectado"
+    }
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+  "settings.layout_mode.auto": "Automático",
+  "settings.layout_mode.fixed": "Fijo"
+}

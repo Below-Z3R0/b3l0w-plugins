@@ -1,0 +1,312 @@
+id = "b3l0w/wallpaper"
+name = "b3l0w Wallpaper"
+version = "0.4.1"
+plugin_api = 43
+author = "b3l0w"
+license = "MIT"
+icon = "movie"
+description = "One wallpaper manager: Steam Workshop (Wallpaper Engine), local images and videos, and Wallhaven search — with palette sync, timed cycling and GPU-load rejection"
+dependencies = ["linux-wallpaperengine", "mpvpaper", "pkill", "setsid", "ffmpeg"]
+tags = ["wallpaper", "desktop", "theming"]
+
+# Panel size is fixed by this manifest, so grid density is exposed instead.
+[[setting]]
+key = "grid_columns"
+type = "int"
+label_key = "settings.grid_columns.label"
+description_key = "settings.grid_columns.description"
+default = 4
+min = 2
+max = 8
+
+# Clave de la API de Wallhaven: sin ella la búsqueda sólo devuelve SFW.
+[[setting]]
+key = "wallhaven_max"
+
+  type = "number"
+  default = 1200
+  min = 24
+  max = 2400
+  step = 24
+  label_key = "settings.wallhaven_max.label"
+  description_key = "settings.wallhaven_max.description"
+
+[[setting]]
+key = "wallhaven_api_key"
+type = "string"
+label_key = "settings.wallhaven_api_key.label"
+description_key = "settings.wallhaven_api_key.description"
+default = ""
+
+# Carpetas del modo local. El host muestra un selector de carpetas para
+# type = "folder", así que la ruta la elige el usuario desde Ajustes.
+[[setting]]
+key = "images_dir"
+type = "folder"
+label_key = "settings.images_dir.label"
+description_key = "settings.images_dir.description"
+default = "~/Pictures/Wallpapers"
+
+[[setting]]
+key = "videos_dir"
+type = "folder"
+label_key = "settings.videos_dir.label"
+description_key = "settings.videos_dir.description"
+default = "~/Videos"
+
+# Profundidad de subcarpetas que recorren los modos locales (0 = sólo el
+# primer nivel).
+[[setting]]
+key = "scan_depth"
+type = "int"
+label_key = "settings.scan_depth.label"
+description_key = "settings.scan_depth.description"
+default = 2
+min = 0
+max = 5
+
+# Modo debug: trazas detalladas en el log. Desactivado por defecto; el
+# interruptor del panel lo enciende y queda persistido en el store.
+[[setting]]
+key = "debug"
+type = "bool"
+default = false
+label_key = "settings.debug.label"
+description_key = "settings.debug.description"
+
+# Apagar animaciones baja el uso de CPU en equipos modestos.
+[[setting]]
+key = "animations"
+type = "bool"
+label_key = "settings.animations.label"
+description_key = "settings.animations.description"
+default = true
+
+# Tamaño de los wallpapers en el carrusel (ancho en px).
+[[setting]]
+key = "default_view"
+type = "select"
+label_key = "settings.default_view.label"
+description_key = "settings.default_view.description"
+default = "carousel"
+options = [
+  { value = "carousel", label_key = "settings.default_view.options.carousel" },
+  { value = "grid", label_key = "settings.default_view.options.grid" }
+]
+
+# A live scene is not an image, so Noctalia cannot build its palette from it.
+# With this on, applying a wallpaper also sets a still of it (Workshop preview,
+# or a decoded frame when ffmpeg is installed) so the normal generator runs.
+[[setting]]
+key = "sync_colors"
+type = "bool"
+label_key = "settings.sync_colors.label"
+description_key = "settings.sync_colors.description"
+default = true
+
+# Measured, not guessed: a wallpaper goes on the blocklist when the GPU spent
+# at least this share of the sampling window out of RC6.
+[[setting]]
+key = "gpu_threshold"
+type = "int"
+label_key = "settings.gpu_threshold.label"
+description_key = "settings.gpu_threshold.description"
+default = 85
+min = 50
+max = 100
+
+# Warm-up gives shader compilation time to finish before the counters are read,
+# otherwise every scene looks heavy for the first seconds.
+[[setting]]
+key = "probe_warmup_ms"
+type = "int"
+label_key = "settings.probe_warmup_ms.label"
+description_key = "settings.probe_warmup_ms.description"
+default = 3000
+min = 500
+max = 15000
+
+[[setting]]
+key = "probe_sample_ms"
+type = "int"
+label_key = "settings.probe_sample_ms.label"
+description_key = "settings.probe_sample_ms.description"
+default = 4000
+min = 1000
+max = 20000
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+  # El host asigna `middle` a "abrir ajustes" por defecto; con "none" el botón
+  # del medio llega a `onMiddleClick` y marca/quita favorito el fondo en curso.
+  [widget.actions]
+  middle = "none"
+
+# height = "content" ajusta la superficie al árbol que renderiza el panel (el
+# carrusel es bajo, el grid alto); max_height lo capa para no tapar la pantalla.
+# ── Escalera de anchos del panel ─────────────────────────────────────────
+# El host es dueño del tamaño: el API de `panel` es `render`, `close`,
+# `openContextMenu`, `setWantsSecondTicks` y `setNeedsFrameTick` — no hay
+# `setWidth` — y el manifiesto sólo acepta un entero o "fill" (no existe
+# `width = "content"`). Un panel abierto no se puede redimensionar.
+#
+# Por eso el ancho es una ESCALERA: una entrada por escalón, cada 100 px
+# entre 800 y 1900. El plugin calcula el ancho que la vista necesita
+# (`desiredPanel` en panel.luau) y abre el escalón que lo contiene; al
+# cambiar el conteo de wallpapers, el ancho de las tarjetas o el ancho de
+# panel de Opciones, cierra esta entrada y abre la correcta.
+#
+#   ancho del panel = celdas * ancho de tarjeta + gaps + zonas + padding
+#
+# El conteo (3/5) fija el tamaño base y el ancho de tarjeta lo ajusta.
+[[panel]]
+id = "panel_w800"
+entry = "panel_e800.luau"
+width = 800
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w900"
+entry = "panel_e900.luau"
+width = 900
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1000"
+entry = "panel_e1000.luau"
+width = 1000
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1100"
+entry = "panel_e1100.luau"
+width = 1100
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1200"
+entry = "panel_e1200.luau"
+width = 1200
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1300"
+entry = "panel_e1300.luau"
+width = 1300
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1400"
+entry = "panel_e1400.luau"
+width = 1400
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel"
+entry = "panel_e1500.luau"
+# Escalón de 1500 px: la entrada histórica y la única VISIBLE en el
+# launcher. Las demás (`panel_w<N>`) se ocultan con
+# `shell.launcher.panels.ignored` porque son la misma vista con otro ancho.
+width = 1500
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1600"
+entry = "panel_e1600.luau"
+width = 1600
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1700"
+entry = "panel_e1700.luau"
+width = 1700
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1800"
+entry = "panel_e1800.luau"
+width = 1800
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[panel]]
+id = "panel_w1900"
+entry = "panel_e1900.luau"
+width = 1900
+height = "content"
+max_height = 920
+placement = "attached"
+capture_keys = ["Left", "Right", "Up", "Down", "Prior", "Next", "Home", "End", "Return", "g", "f", "p"]
+
+[[service]]
+id = "start"
+entry = "service.luau"
+
+[[setting]]
+key = "video_loop"
+type = "bool"
+label_key = "settings.video_loop.label"
+description_key = "settings.video_loop.description"
+default = true
+
+[[setting]]
+key = "video_mute"
+type = "bool"
+label_key = "settings.video_mute.label"
+description_key = "settings.video_mute.description"
+default = true
+
+[[setting]]
+key = "video_hwdec"
+type = "bool"
+label_key = "settings.video_hwdec.label"
+description_key = "settings.video_hwdec.description"
+default = true
+
+[[setting]]
+key = "video_options"
+type = "string"
+label_key = "settings.video_options.label"
+description_key = "settings.video_options.description"
+default = ""
+
+[[setting]]
+key = "download_dir"
+type = "folder"
+label_key = "settings.download_dir.label"
+description_key = "settings.download_dir.description"
+default = ""

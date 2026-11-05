@@ -1,0 +1,195 @@
+# b3l0w Audit — auditoría ambiental de paquetes Arch/CachyOS contra los avisos
+# del Arch Security Team, más el estado de actualizaciones de Noctalia, Umbriel
+# y el CLI b3l0w.
+#
+# Paridad con cero800/arch-audit: `arch-audit --json` enriquecido con la versión
+# instalada (`pacman -Q`), conteo y color en el widget, severidades, filtro,
+# lista de ignorados, notificación de CVEs nuevas e intervalo configurable.
+#
+# Tres fuentes extra: `pacman -Qu` filtrado a noctalia*, `pacman -Qu` filtrado a
+# *umbriel*, y la comparación de mtime entre el binario `b3l0w` y el `.go` más
+# nuevo del repo ("necesita recompilar").
+#
+# "Actualizar todo" corre sólo el subconjunto seguro: lista pendientes con
+# `pacman -Qu` (cada paquete se actualiza con confirmación propia) y recompila
+# el CLI con `go build`. Nunca ejecuta `pacman -Syu` por su cuenta.
+
+id = "b3l0w/audit"
+name = "b3l0w Audit"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "shield-exclamation"
+dependencies = ["arch-audit", "pacman", "go", "noctalia", "pkexec", "xdg-open"]
+tags = ["arch", "bar", "panel", "service", "indicator", "system", "utility"]
+
+# ── Chequeos ─────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "check_hours"
+type = "int"
+label_key = "settings.check_hours.label"
+description_key = "settings.check_hours.desc"
+default = 6
+min = 1
+max = 168
+
+[[setting]]
+key = "updates_minutes"
+type = "int"
+label_key = "settings.updates_minutes.label"
+description_key = "settings.updates_minutes.desc"
+default = 15
+min = 2
+max = 240
+
+# ── Notificaciones ───────────────────────────────────────────────────────────
+
+[[setting]]
+key = "notify_new"
+type = "bool"
+label_key = "settings.notify_new.label"
+description_key = "settings.notify_new.desc"
+default = true
+
+[[setting]]
+key = "notify_min_severity"
+type = "select"
+label_key = "settings.notify_min_severity.label"
+description_key = "settings.notify_min_severity.desc"
+default = "high"
+options = [
+  { value = "critical", label_key = "settings.notify_min_severity.critical" },
+  { value = "high", label_key = "settings.notify_min_severity.high" },
+  { value = "medium", label_key = "settings.notify_min_severity.medium" },
+  { value = "low", label_key = "settings.notify_min_severity.low" },
+]
+
+# ── Filtrado ─────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "ignore_packages"
+type = "string_list"
+label_key = "settings.ignore_packages.label"
+description_key = "settings.ignore_packages.desc"
+default = []
+
+# ── Barra ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "show_label"
+type = "bool"
+label_key = "settings.show_label.label"
+description_key = "settings.show_label.desc"
+default = false
+
+[[setting]]
+key = "hide_when_clean"
+type = "bool"
+label_key = "settings.hide_when_clean.label"
+description_key = "settings.hide_when_clean.desc"
+default = false
+
+[[setting]]
+key = "glyph"
+type = "glyph"
+label_key = "settings.glyph.label"
+description_key = "settings.glyph.desc"
+default = "shield-exclamation"
+
+# ── Panel ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+label_key = "settings.panel_mode.label"
+description_key = "settings.panel_mode.desc"
+default = "compact"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+]
+
+[[setting]]
+key = "animations"
+type = "bool"
+label_key = "settings.animations.label"
+description_key = "settings.animations.desc"
+default = true
+
+[[setting]]
+key = "density"
+type = "select"
+label_key = "settings.density.label"
+description_key = "settings.density.desc"
+default = "cozy"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+# ── CLI b3l0w ────────────────────────────────────────────────────────────────
+# Rutas del binario y del repo Go. Se comparan mtimes para decidir si el
+# binario "necesita recompilar" y son las que usa "Actualizar todo" al compilar.
+
+[[setting]]
+key = "cli_bin"
+type = "string"
+label_key = "settings.cli_bin.label"
+description_key = "settings.cli_bin.desc"
+default = "~/.local/bin/b3l0w"
+
+[[setting]]
+key = "cli_repo"
+type = "string"
+label_key = "settings.cli_repo.label"
+description_key = "settings.cli_repo.desc"
+default = "~/Documents/Github/b3l0w"
+
+[[service]]
+id = "service"
+entry = "service.luau"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+# Dos paneles con el mismo entry: el host es dueño del tamaño, así que el modo
+# compacto/flotante se resuelve abriendo uno u otro.
+[[panel]]
+id = "panel"
+entry = "panel_compact.luau"
+width = 560
+height = "content"
+max_height = 640
+placement = "attached"
+position = "auto"
+open_near_click = true
+capture_keys = ["Left", "Right", "Prior", "Next"]
+
+[[panel]]
+id = "float"
+entry = "float.luau"
+width = 1200
+height = "content"
+max_height = 860
+# `attached` (layer-shell) y no `floating`: con `floating` el panel abre
+# como toplevel normal y queda DETRÁS de una ventana maximizada. Con
+# layer-shell se pinta en la capa superior, siempre arriba.
+placement = "attached"
+position = "top_right"
+capture_keys = ["Left", "Right", "Prior", "Next"]
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

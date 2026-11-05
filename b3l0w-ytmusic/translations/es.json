@@ -1,0 +1,113 @@
+{
+  "plugin": {
+    "description": "YouTube Music real: inicio, rankings, búsqueda y autoplay infinito desde innertube, reproducido con mpv."
+  },
+  "settings": {
+    "show_label": {
+      "label": "Mostrar texto en la barra",
+      "desc": "Muestra el título de lo que suena al lado del icono."
+    },
+    "panel_mode": {
+      "label": "Estilo del panel",
+      "desc": "Panel compacto anclado o grande flotante.",
+      "compact": "Compacto (anclado)",
+      "float": "Grande (flotante)",
+      "full": "Pantalla completa (sidebar + reproductor)"
+    },
+    "glyph": {
+      "label": "Icono de la barra",
+      "desc": "Glyph que se usa en la barra."
+    },
+    "animations": {
+      "label": "Animaciones",
+      "desc": "Fundido y escalonado al cambiar de pantalla."
+    },
+    "density": {
+      "label": "Densidad",
+      "desc": "Alto de fila y cuántas entran por página.",
+      "compact": "Compacta",
+      "cozy": "Cómoda",
+      "comfortable": "Amplia"
+    },
+    "region": {
+      "label": "Región de rankings",
+      "desc": "País de dos letras para la página de rankings. Vacío = la región que YouTube elige según tu conexión."
+    },
+    "covers": {
+      "label": "Bajar portadas",
+      "desc": "Descarga las carátulas para que las filas muestren miniaturas reales en vez de placeholders."
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+    "settings.layout_mode.auto": "Automático",
+    "settings.layout_mode.fixed": "Fijo"
+  },
+  "panel": {
+    "tab": {
+      "home": "Inicio",
+      "charts": "Rankings",
+      "search": "Buscar",
+      "queue": "Cola",
+      "discover": "Buscar",
+      "offline": "Sin conexión",
+      "library": "Biblioteca",
+      "settings": "Ajustes"
+    },
+    "loading": "cargando…",
+    "empty": "Todavía no hay nada",
+    "retry": "Reintentar",
+    "refresh": "Actualizar",
+    "play": "Reproducir",
+    "pause": "Pausa",
+    "next": "Siguiente",
+    "prev": "Anterior",
+    "stop": "Parar",
+    "shuffle": "Mezclar la cola",
+    "nothing_playing": "Nada sonando",
+    "more": "Cargar más",
+    "page": "página {page}/{pages} · {total} canciones",
+    "queue_page": "cola {page}/{pages} · {total} canciones",
+    "results": "Resultados de «{query}» · {count}",
+    "search_placeholder": "Buscar canciones…",
+    "search_action": "Buscar",
+    "panel.tab.discover": "Buscar",
+    "panel.tab.offline": "Sin conexión",
+    "panel.tab.library": "Biblioteca",
+    "panel.tab.settings": "Ajustes",
+    "panel.library.title": "Tu biblioteca está vacía",
+    "panel.library.hint": "Las playlists, canciones, álbum y artistas que guardes aparecerán acá.",
+    "panel.discover.hint": "Elegí un punto de partida",
+    "panel.settings.quality": "Calidad de audio",
+    "panel.settings.quality.value": "Máxima (bestaudio)",
+    "panel.settings.region": "Región",
+    "panel.settings.region.value": "Automática",
+    "panel.settings.covers": "Descargar carátulas",
+    "panel.settings.animations": "Animaciones",
+    "panel.settings.mode": "Modo del panel",
+    "library": {
+      "title": "Tu biblioteca está vacía",
+      "hint": "Las playlists, canciones, álbum y artistas que guardes aparecerán acá."
+    },
+    "discover": {
+      "hint": "Elegí un punto de partida"
+    },
+    "setting": {
+      "quality": "Calidad de audio",
+      "quality.value": "Máxima (bestaudio)",
+      "region": "Región",
+      "region.value": "Automática",
+      "covers": "Descargar carátulas",
+      "animations": "Animaciones",
+      "mode": "Modo del panel",
+      "panel.setting.covers.on": "Sí",
+      "panel.setting.covers.off": "No"
+    },
+    "settings": "Ajustes"
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+  "settings.layout_mode.auto": "Automático",
+  "settings.layout_mode.fixed": "Fijo",
+  "panel.setting.covers.on": "Sí",
+  "panel.setting.covers.off": "No"
+}

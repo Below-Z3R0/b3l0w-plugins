@@ -1,0 +1,168 @@
+id = "b3l0w/anilist"
+name = "b3l0w AniList"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "book-2"
+
+# ── ajustes ──────────────────────────────────────────────────────────
+
+[[setting]]
+key = "access_token"
+type = "string"
+default = ""
+label_key = "settings.token"
+description_key = "settings.token.desc"
+
+[[setting]]
+key = "refresh_minutes"
+type = "int"
+default = 30
+min = 5
+max = 720
+label_key = "settings.refresh"
+description_key = "settings.refresh.desc"
+
+[[setting]]
+key = "show_label"
+type = "bool"
+default = false
+label_key = "settings.show_label"
+description_key = "settings.show_label.desc"
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+default = "compact"
+label_key = "settings.panel_mode"
+description_key = "settings.panel_mode.desc"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+]
+
+[[setting]]
+key = "glyph"
+type = "glyph"
+default = "book-2"
+label_key = "settings.glyph"
+description_key = "settings.glyph.desc"
+
+[[setting]]
+key = "animations"
+type = "bool"
+default = true
+label_key = "settings.animations"
+description_key = "settings.animations.desc"
+
+[[setting]]
+key = "density"
+type = "select"
+default = "cozy"
+label_key = "settings.density"
+description_key = "settings.density.desc"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+# ── entries ──────────────────────────────────────────────────────────
+
+[[service]]
+id = "start"
+entry = "service.luau"
+
+[[setting]]
+key = "sort_mode"
+type = "select"
+default = "updated"
+label_key = "settings.sort"
+description_key = "settings.sort.desc"
+options = [
+  { value = "updated", label_key = "settings.sort.updated" },
+  { value = "title", label_key = "settings.sort.title" },
+  { value = "score", label_key = "settings.sort.score" },
+  { value = "progress", label_key = "settings.sort.progress" },
+  { value = "airing", label_key = "settings.sort.airing" },
+]
+
+[[setting]]
+key = "cover_size"
+type = "select"
+default = "medium"
+label_key = "settings.cover"
+description_key = "settings.cover.desc"
+options = [
+  { value = "small", label_key = "settings.cover.small" },
+  { value = "medium", label_key = "settings.cover.medium" },
+  { value = "large", label_key = "settings.cover.large" },
+]
+
+[[setting]]
+key = "show_airing"
+type = "bool"
+default = true
+label_key = "settings.show_airing"
+description_key = "settings.show_airing.desc"
+
+[[setting]]
+key = "show_genres"
+type = "bool"
+default = true
+label_key = "settings.show_genres"
+description_key = "settings.show_genres.desc"
+
+[[setting]]
+key = "score_format"
+type = "select"
+default = "tenths"
+label_key = "settings.score_format"
+description_key = "settings.score_format.desc"
+options = [
+  { value = "tenths", label_key = "settings.score_format.tenths" },
+  { value = "percent", label_key = "settings.score_format.percent" },
+  { value = "stars", label_key = "settings.score_format.stars" },
+]
+
+[[setting]]
+key = "hide_planning"
+type = "bool"
+default = false
+label_key = "settings.hide_planning"
+description_key = "settings.hide_planning.desc"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel_compact.luau"
+width = 740
+# Cabecera + pestañas + fila de filtros + 7 filas de 68 + pie de página + padding.
+height = 720
+placement = "attached"
+capture_keys = ["g", "Prior", "Next", "Home"]
+
+[[panel]]
+id = "float"
+entry = "float.luau"
+width = 1180
+height = 820
+placement = "attached"
+position = "center"
+capture_keys = ["g", "Prior", "Next", "Home"]
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

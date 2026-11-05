@@ -1,0 +1,144 @@
+id = "b3l0w/ytmusic"
+name = "b3l0w YouTube Music"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "brand-youtube"
+tags = ["music", "media"]
+dependencies = ["mpv", "yt-dlp"]
+
+# ── ajustes comunes ──────────────────────────────────────────────────
+
+[[setting]]
+key = "show_label"
+type = "bool"
+default = false
+label_key = "settings.show_label.label"
+description_key = "settings.show_label.desc"
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+default = "compact"
+label_key = "settings.panel_mode.label"
+description_key = "settings.panel_mode.desc"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+  { value = "full", label_key = "settings.panel_mode.full" },
+]
+
+[[setting]]
+key = "glyph"
+type = "glyph"
+default = "brand-youtube"
+label_key = "settings.glyph.label"
+description_key = "settings.glyph.desc"
+
+[[setting]]
+key = "animations"
+type = "bool"
+default = true
+label_key = "settings.animations.label"
+description_key = "settings.animations.desc"
+
+[[setting]]
+key = "density"
+type = "select"
+default = "cozy"
+label_key = "settings.density.label"
+description_key = "settings.density.desc"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+[[setting]]
+key = "region"
+type = "string"
+default = ""
+label_key = "settings.region.label"
+description_key = "settings.region.desc"
+
+[[setting]]
+key = "covers"
+type = "bool"
+default = true
+label_key = "settings.covers.label"
+description_key = "settings.covers.desc"
+
+# ── entries ──────────────────────────────────────────────────────────
+
+[[service]]
+id = "start"
+entry = "service.luau"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+# El medio y el derecho quedan para el script: por defecto el host usa el medio
+# para abrir ajustes y ahí onMiddleClick nunca se llamaría.
+[widget.actions]
+# El click izquierdo abre el mini player (el panel flotante chiquito). El
+# mini tiene su propio botón para pasar al panel a pantalla completa.
+left = "panel-toggle b3l0w/ytmusic:mini"
+middle = "none"
+right = "none"
+
+[[panel]]
+id = "panel"
+entry = "panel_compact.luau"
+width = 740
+height = "content"
+max_height = 680
+placement = "attached"
+capture_keys = ["Prior", "Next", "Home", "g"]
+
+[[panel]]
+id = "float"
+entry = "float_panel.luau"
+width = 1160
+height = "content"
+max_height = 840
+# `attached` (layer-shell) y no `floating`: con `floating` el panel abre
+# como toplevel normal y queda DETRÁS de una ventana maximizada.
+placement = "attached"
+position = "top_right"
+capture_keys = ["Prior", "Next", "Home", "g"]
+
+# El panel a pantalla completa: sidebar + vistas + playerbar, como el
+# cliente real de YouTube Music. `fill` en ambos ejes = ocupa la pantalla.
+[[panel]]
+id = "full"
+entry = "full.luau"
+placement = "floating"
+width = "fill"
+height = "fill"
+
+# El mini player: panel flotante chiquito con portada, scrubber y controles.
+[[panel]]
+id = "mini"
+entry = "mini.luau"
+# "attached" es una capa layer-shell: queda POR ENCIMA de las ventanas
+# normales. Un "floating" es un toplevel común y cualquier app maximizada
+# (como un chat) lo tapa.
+placement = "attached"
+position = "top_right"
+width = 380
+height = "content"
+max_height = 460
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

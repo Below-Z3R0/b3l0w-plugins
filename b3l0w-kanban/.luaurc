@@ -1,0 +1,4 @@
+{
+  "languageMode": "nonstrict",
+  "globals": ["noctalia", "ui", "barWidget", "panel"]
+}

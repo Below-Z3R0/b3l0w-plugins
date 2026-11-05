@@ -1,0 +1,137 @@
+id = "b3l0w/containers"
+name = "b3l0w Containers"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "brand-docker"
+
+[[setting]]
+key = "show_stopped"
+type = "bool"
+default = true
+label_key = "settings.show_stopped"
+description_key = "settings.show_stopped.desc"
+
+[[setting]]
+key = "refresh_seconds"
+type = "int"
+default = 5
+min = 2
+max = 120
+label_key = "settings.refresh"
+description_key = "settings.refresh.desc"
+
+[[setting]]
+key = "show_label"
+type = "bool"
+default = false
+label_key = "settings.show_label"
+description_key = "settings.show_label.desc"
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+default = "compact"
+label_key = "settings.panel_mode"
+description_key = "settings.panel_mode.desc"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+]
+
+[[setting]]
+key = "glyph"
+type = "glyph"
+default = "brand-docker"
+label_key = "settings.glyph"
+description_key = "settings.glyph.desc"
+
+[[setting]]
+key = "animations"
+type = "bool"
+default = true
+label_key = "settings.animations"
+description_key = "settings.animations.desc"
+
+[[setting]]
+key = "density"
+type = "select"
+default = "cozy"
+label_key = "settings.density"
+description_key = "settings.density.desc"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+[[setting]]
+key = "open_url_on_click"
+type = "bool"
+default = true
+label_key = "settings.open_url"
+description_key = "settings.open_url.desc"
+
+[[service]]
+id = "start"
+entry = "service.luau"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+[[panel]]
+id = "panel"
+entry = "panel.luau"
+width = 760
+position = "top_right"
+# El panel se ajusta al contenido: con un solo contenedor no tiene sentido un
+# bloque de 720 px con 400 vacíos. El máximo evita que una lista larga crezca
+# sin control; la paginación corta en ese tope.
+height = "content"
+max_height = 720
+placement = "attached"
+capture_keys = ["Left", "Right", "g", "Prior", "Next"]
+
+[[panel]]
+id = "float"
+entry = "float.luau"
+width = 1240
+height = 860
+# `attached` (layer-shell) y no `floating`: con `floating` el panel abre
+# como toplevel normal y queda DETRÁS de una ventana maximizada.
+placement = "attached"
+position = "top_right"
+capture_keys = ["Left", "Right", "g", "Prior", "Next"]
+
+# El panel grande tipo Docker Desktop: sidebar, dashboard, compose, terminal
+# y todas las acciones. Se abre desde el panel compacto con el botón
+# "Docker Desktop" de la cabecera.
+#
+# `floating`: ventana propia que se puede mover y dejar al lado del trabajo,
+# como el Docker Desktop de verdad. Con `attached` quedaba clavado al borde
+# como una capa layer-shell.
+[[panel]]
+id = "desktop"
+entry = "desktop.luau"
+# `fill` pide toda la superficie del monitor. Va con `floating` porque el host
+# exige ese placement para width/height "fill" (con `attached` descarta el
+# plugin entero).
+width = "fill"
+height = "fill"
+placement = "floating"
+position = "center"
+capture_keys = ["Left", "Right", "Prior", "Next"]
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

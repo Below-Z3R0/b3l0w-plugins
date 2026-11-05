@@ -1,0 +1,196 @@
+# b3l0w Audio — reemplazo de `blackbartblues/audio-switcher` con selección de
+# códec por dispositivo.
+#
+# Paridad con el original: lista salidas y entradas, marca la activa, cambia el
+# default, volumen por dispositivo, mute, ícono de barra que refleja el estado y
+# refresco ante cambios externos (`pactl subscribe`, no sólo poll).
+#
+# Backend: `wpctl` (WirePlumber) manda — ids, `set-default`, `set-volume`,
+# `set-mute`, `set-profile` — y `pactl` aporta el JSON con volumen por canal,
+# perfiles de tarjeta y streams, y queda como respaldo si no hay wpctl.
+#
+# Extras sobre el original:
+#   1. selector de códec por tarjeta bluetooth (SBC / SBC-XQ / AAC / aptX /
+#      aptX HD / LDAC / mSBC / CVSD) con reinicio del dispositivo si el perfil
+#      no queda aplicado;
+#   2. batería del auricular (upower, respaldo sysfs) al lado del dispositivo;
+#   3. acciones rápidas: mover los streams al sink elegido y mute de todo;
+#   4. slider de volumen por dispositivo y marca visual del default.
+
+id = "b3l0w/audio"
+name = "b3l0w Audio"
+version = "1.0.0"
+plugin_api = 43
+description_key = "plugin.description"
+author = "b3l0w"
+license = "MIT"
+icon = "volume-2"
+dependencies = ["pactl", "wpctl", "bluetoothctl", "busctl", "pw-metadata", "pw-dump"]
+tags = ["audio", "bar", "panel", "service", "system", "utility", "bluetooth"]
+
+# ── Barra ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "show_label"
+type = "bool"
+label_key = "settings.show_label.label"
+description_key = "settings.show_label.desc"
+default = false
+
+[[setting]]
+key = "show_percentage"
+type = "bool"
+label_key = "settings.show_percentage.label"
+description_key = "settings.show_percentage.desc"
+default = true
+
+# ── Panel ────────────────────────────────────────────────────────────────────
+
+[[setting]]
+key = "panel_mode"
+type = "select"
+label_key = "settings.panel_mode.label"
+description_key = "settings.panel_mode.desc"
+default = "compact"
+options = [
+  { value = "compact", label_key = "settings.panel_mode.compact" },
+  { value = "float", label_key = "settings.panel_mode.float" },
+]
+
+[[setting]]
+key = "animations"
+type = "bool"
+label_key = "settings.animations.label"
+description_key = "settings.animations.desc"
+default = true
+
+[[setting]]
+key = "density"
+type = "select"
+label_key = "settings.density.label"
+description_key = "settings.density.desc"
+default = "cozy"
+options = [
+  { value = "compact", label_key = "settings.density.compact" },
+  { value = "cozy", label_key = "settings.density.cozy" },
+  { value = "comfortable", label_key = "settings.density.comfortable" },
+]
+
+# ── Refresco ─────────────────────────────────────────────────────────────────
+# El refresco real lo dispara `pactl subscribe`; este intervalo es el respaldo
+# por si el stream muere.
+
+[[setting]]
+key = "refresh_seconds"
+type = "int"
+label_key = "settings.refresh_seconds.label"
+description_key = "settings.refresh_seconds.desc"
+default = 5
+min = 2
+max = 120
+step = 1
+
+# ── Comportamiento ───────────────────────────────────────────────────────────
+
+[[setting]]
+key = "volume_step"
+type = "int"
+label_key = "settings.volume_step.label"
+description_key = "settings.volume_step.desc"
+default = 5
+min = 1
+max = 25
+step = 1
+
+[[setting]]
+key = "notify_on_switch"
+type = "bool"
+label_key = "settings.notify_on_switch.label"
+description_key = "settings.notify_on_switch.desc"
+default = true
+
+[[setting]]
+key = "show_battery"
+type = "bool"
+label_key = "settings.show_battery.label"
+description_key = "settings.show_battery.desc"
+default = true
+
+# ── Perfil de audio ───────────────────────────────────────────────────────
+# El perfil que se aplica al cambiar de salida: fija el rol del stream y el
+# sample rate pedido al backend.
+
+[[setting]]
+key = "default_profile"
+type = "select"
+label_key = "settings.default_profile.label"
+description_key = "settings.default_profile.desc"
+default = "music"
+options = [
+  { value = "music", label_key = "settings.default_profile.music" },
+  { value = "telephony", label_key = "settings.default_profile.telephony" },
+  { value = "hires", label_key = "settings.default_profile.hires" },
+]
+
+# ── Vista avanzada ───────────────────────────────────────────────────────
+# Los controles finos (volumen por canal, balance, latencia, filtros) están
+# ocultos por defecto: con la vista simple el panel es más corto.
+
+[[setting]]
+key = "show_advanced"
+type = "bool"
+label_key = "settings.show_advanced.label"
+description_key = "settings.show_advanced.desc"
+default = false
+
+# ── Entries ──────────────────────────────────────────────────────────────────
+
+[[service]]
+id = "service"
+entry = "service.luau"
+
+[[widget]]
+id = "widget"
+entry = "widget.luau"
+
+# Dos paneles con el mismo entry: el host es dueño del tamaño, así que el modo
+# compacto/flotante se resuelve abriendo uno u otro desde el widget.
+[[panel]]
+id = "panel"
+entry = "panel_compact.luau"
+width = 560
+# `height = "content"`: el alto lo pone el contenido, hasta `max_height`.
+# Con altura fija (680) el panel tenía 400 px de hueco muerto abajo cuando
+# había un solo dispositivo, y había que calcular a mano el alto útil para
+# la lista. Con "content" el panel se ajusta a lo que dibuja.
+height = "content"
+max_height = 680
+placement = "attached"
+position = "top_right"
+open_near_click = true
+
+[[panel]]
+id = "float"
+entry = "float.luau"
+width = 1120
+height = "content"
+max_height = 820
+# `attached` (layer-shell) y no `floating`: con `floating` el panel abre
+# como toplevel normal y queda DETRÁS de una ventana maximizada. Con
+# layer-shell se pinta en la capa superior, siempre arriba.
+placement = "attached"
+# Con `attached`, `position` sólo se aplica si es una esquina de la barra:
+# `center` no lo es y el panel queda pegado a la barra en vez de centrado.
+position = "top_right"
+open_near_click = true
+
+[[setting]]
+key = "layout_mode"
+type = "select"
+label_key = "settings.layout_mode.label"
+description_key = "settings.layout_mode.desc"
+default = "auto"
+options = [
+  { value = "auto", label_key = "settings.layout_mode.auto" },
+  { value = "fixed", label_key = "settings.layout_mode.fixed" },
+]

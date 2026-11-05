@@ -1,0 +1,7 @@
+.scratch/
+*.log
+
+# temporales del runner de tests
+.panel-spec.luau
+.panel-mod/
+.panel-entry.luau

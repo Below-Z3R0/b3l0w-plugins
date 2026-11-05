@@ -1,0 +1,113 @@
+{
+  "plugin": {
+    "description": "Real YouTube Music: home, charts, search and infinite autoplay driven by innertube, played with mpv."
+  },
+  "settings": {
+    "show_label": {
+      "label": "Show text in the bar",
+      "desc": "Shows the title of the current track next to the icon."
+    },
+    "panel_mode": {
+      "label": "Panel style",
+      "desc": "Compact attached panel or large floating one.",
+      "compact": "Compact (attached)",
+      "float": "Large (floating)",
+      "full": "Full screen (sidebar + player bar)"
+    },
+    "glyph": {
+      "label": "Bar icon",
+      "desc": "Glyph used in the bar."
+    },
+    "animations": {
+      "label": "Animations",
+      "desc": "Fade and stagger when switching screens."
+    },
+    "density": {
+      "label": "Density",
+      "desc": "Row height and how many rows fit per page.",
+      "compact": "Compact",
+      "cozy": "Cozy",
+      "comfortable": "Comfortable"
+    },
+    "region": {
+      "label": "Charts region",
+      "desc": "Two-letter country for the charts page. Empty = the region YouTube picks for your connection."
+    },
+    "covers": {
+      "label": "Download covers",
+      "desc": "Fetches album art so rows show real thumbnails instead of placeholders."
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automatic: the host measures the panel and the content fits it. Fixed: the plugin asks for an explicit width.",
+    "settings.layout_mode.auto": "Automatic",
+    "settings.layout_mode.fixed": "Fixed"
+  },
+  "panel": {
+    "tab": {
+      "home": "Home",
+      "charts": "Charts",
+      "search": "Search",
+      "queue": "Queue",
+      "discover": "Search",
+      "offline": "Offline",
+      "library": "Library",
+      "settings": "Settings"
+    },
+    "loading": "loading…",
+    "empty": "Nothing here yet",
+    "retry": "Retry",
+    "refresh": "Refresh",
+    "play": "Play",
+    "pause": "Pause",
+    "next": "Next",
+    "prev": "Previous",
+    "stop": "Stop",
+    "shuffle": "Shuffle the queue",
+    "nothing_playing": "Nothing playing",
+    "more": "Load more",
+    "page": "page {page}/{pages} · {total} songs",
+    "queue_page": "queue {page}/{pages} · {total} songs",
+    "results": "Results for “{query}” · {count}",
+    "search_placeholder": "Search songs…",
+    "search_action": "Search",
+    "panel.tab.discover": "Search",
+    "panel.tab.offline": "Offline",
+    "panel.tab.library": "Library",
+    "panel.tab.settings": "Settings",
+    "panel.library.title": "Your library is empty",
+    "panel.library.hint": "Playlists, songs, albums and artists you save will show up here.",
+    "panel.discover.hint": "Pick a starting point",
+    "panel.settings.quality": "Audio quality",
+    "panel.settings.quality.value": "Best (bestaudio)",
+    "panel.settings.region": "Region",
+    "panel.settings.region.value": "Auto",
+    "panel.settings.covers": "Download covers",
+    "panel.settings.animations": "Animations",
+    "panel.settings.mode": "Panel mode",
+    "library": {
+      "title": "Your library is empty",
+      "hint": "Playlists, songs, albums and artists you save will show up here."
+    },
+    "discover": {
+      "hint": "Pick a starting point"
+    },
+    "setting": {
+      "quality": "Audio quality",
+      "quality.value": "Best (bestaudio)",
+      "region": "Region",
+      "region.value": "Auto",
+      "covers": "Download covers",
+      "animations": "Animations",
+      "mode": "Panel mode",
+      "panel.setting.covers.on": "On",
+      "panel.setting.covers.off": "Off"
+    },
+    "settings": "Settings"
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automatic: the host measures the panel and the content fits it. Fixed: the plugin asks for an explicit width.",
+  "settings.layout_mode.auto": "Automatic",
+  "settings.layout_mode.fixed": "Fixed",
+  "panel.setting.covers.on": "On",
+  "panel.setting.covers.off": "Off"
+}

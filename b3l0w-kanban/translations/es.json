@@ -1,0 +1,549 @@
+{
+  "board": {
+    "closed": "Cerrados",
+    "column_empty": "Vacía",
+    "more": "+{count} sin mostrar",
+    "open": "Abiertos",
+    "stale": "{count}d quieta"
+  },
+  "events": {
+    "forked": "Forkeó",
+    "issue_updated": "Actualizó un issue",
+    "pull_request_updated": "Actualizó un pull request",
+    "pushed": "Pusheó cambios",
+    "release_published": "Publicó un release",
+    "starred": "Marcó un repositorio"
+  },
+  "filter": {
+    "all": "Todo",
+    "assigned_to_me": "Asignados a mí",
+    "created_by_me": "Creados por mí",
+    "read": "Leídas",
+    "repositories": "Repositorios",
+    "review_requested": "Review pedido",
+    "stale": "Sólo estancadas",
+    "unassigned": "Sin asignar",
+    "unread": "No leídas",
+    "users": "Personas"
+  },
+  "heatmap": {
+    "less": "Menos",
+    "more": "Más",
+    "total": "{count} contribuciones en el último año"
+  },
+  "notification": {
+    "reason": {
+      "assigned": "asignado",
+      "attention": "requiere atención",
+      "updates": "actualización"
+    }
+  },
+  "panel": {
+    "actions": "Actions",
+    "activity": "Actividad",
+    "board": "Tablero",
+    "close": "Cerrar",
+    "contributions": "Contribuciones",
+    "create_hint": "Crea el issue con gh y refresca el tablero.",
+    "create_issue_body": "Descripción (markdown)",
+    "create_issue_title": "Título del issue",
+    "create_labels_hint": "Labels, separados por coma",
+    "create_repo": "en {repo}",
+    "create_submit": "Crear issue",
+    "create_title": "Nuevo issue",
+    "empty": "Todavía no hay nada",
+    "feed": "Following",
+    "feed_limited": "Sólo actividad reciente",
+    "issues": "Issues",
+    "mark_all_read": "Marcar todo como leído",
+    "mark_read": "Marcar como leída",
+    "not_signed": "Sin sesión",
+    "notifications": "Notificaciones",
+    "open_browser": "Abrir en GitHub",
+    "overview": "Overview",
+    "pick_repo": "Elegir repositorio",
+    "private": "privado",
+    "project_meta": "#{number} · {items} items",
+    "projects": "Proyectos",
+    "pull_requests": "Pull requests",
+    "refresh": "Refrescar",
+    "refreshing": "Refrescando…",
+    "repos": "Repositorios",
+    "repos_hint": "Elegir un repositorio refresca el tablero y el dashboard.",
+    "repositories": "Repositorios",
+    "search": "Buscar tarjetas…",
+    "select": "Elegir",
+    "settings": "Ajustes",
+    "show_more": "Mostrar más",
+    "source": "Columnas",
+    "source_issues": "Estado del issue",
+    "source_project": "Proyecto",
+    "title": "Kanban",
+    "unread": "Notificaciones sin leer",
+    "updated": "Actualizado {when}",
+    "visible": "{shown} de {total} tarjetas"
+  },
+  "plugin": {
+    "description": "Tablero kanban y dashboard de GitHub sobre la CLI gh."
+  },
+  "profile": {
+    "contributions": "Contribuciones",
+    "followers": "Seguidores",
+    "following": "Siguiendo",
+    "repositories": "Repositorios"
+  },
+  "settings": {
+    "activity_history_days": {
+      "desc": "Sólo muestra PRs, reviews, issues y Actions de estos días.",
+      "label": "Actividad · Historial (días)"
+    },
+    "activity_repository_emphasis": {
+      "label": "Apariencia · Énfasis de repositorio"
+    },
+    "activity_show_status_badges": {
+      "label": "Apariencia · Badges de estado"
+    },
+    "activity_show_type_icons": {
+      "label": "Apariencia · Iconos de tipo"
+    },
+    "animations": {
+      "desc": "Tarjetas escalonadas al cambiar de pestaña o columna.",
+      "label": "General · Animaciones"
+    },
+    "appearance_animations": {
+      "desc": "Hover animado en las tarjetas del dashboard. El tablero usa «Animaciones».",
+      "label": "Apariencia · Animaciones del dashboard"
+    },
+    "appearance_avatar_shape": {
+      "circle": "Círculo",
+      "desc": "Círculo o cuadrado redondeado.",
+      "label": "Apariencia · Forma del avatar",
+      "rounded": "Redondeado"
+    },
+    "appearance_avatar_size": {
+      "desc": "Tamaño del avatar del perfil.",
+      "label": "Apariencia · Avatar",
+      "large": "Grande",
+      "medium": "Mediano",
+      "small": "Chico"
+    },
+    "appearance_card_background": {
+      "desc": "Fondo transparente, teñido o sólido.",
+      "label": "Apariencia · Fondo de tarjeta",
+      "solid": "Sólido",
+      "tinted": "Teñido",
+      "transparent": "Transparente"
+    },
+    "appearance_card_border": {
+      "accent": "Acento",
+      "desc": "Cómo se dibuja el borde de las tarjetas.",
+      "label": "Apariencia · Borde",
+      "none": "Ninguno",
+      "subtle": "Sutil"
+    },
+    "appearance_card_radius": {
+      "desc": "Redondeo de las tarjetas del dashboard.",
+      "label": "Apariencia · Radio de tarjeta"
+    },
+    "appearance_card_spacing": {
+      "desc": "Espacio entre tarjetas del dashboard.",
+      "label": "Apariencia · Separación"
+    },
+    "appearance_density": {
+      "comfortable": "Cómoda",
+      "compact": "Compacta",
+      "desc": "Espaciado e información por tarjeta en el dashboard. El tablero usa «Densidad».",
+      "label": "Apariencia · Densidad del dashboard",
+      "standard": "Estándar"
+    },
+    "appearance_font_scale": {
+      "desc": "Escala el texto del dashboard.",
+      "label": "Apariencia · Escala de texto"
+    },
+    "appearance_hover_effect": {
+      "background": "Fondo",
+      "border": "Borde",
+      "desc": "Efecto al pasar el puntero por una tarjeta.",
+      "label": "Apariencia · Hover",
+      "none": "Ninguno"
+    },
+    "appearance_icon_style": {
+      "color": "Color",
+      "desc": "Estilo de los iconos del dashboard.",
+      "label": "Apariencia · Iconos",
+      "muted": "Apagado",
+      "theme": "Tema"
+    },
+    "appearance_secondary_text": {
+      "desc": "Cómo se muestra el texto secundario.",
+      "full": "Completo",
+      "hidden": "Oculto",
+      "label": "Apariencia · Texto secundario",
+      "truncate": "Recortado"
+    },
+    "appearance_show_empty_illustration": {
+      "desc": "Muestra una ilustración cuando no hay items.",
+      "label": "Apariencia · Ilustración vacía"
+    },
+    "appearance_time_format": {
+      "desc": "Cómo se formatean fechas y horas.",
+      "iso": "ISO 8601",
+      "label": "Apariencia · Formato de fecha",
+      "local": "Hora local",
+      "relative": "Relativo"
+    },
+    "bar_display_mode": {
+      "both": "Icono y contador",
+      "count": "Contador de no leídas",
+      "desc": "Qué muestra el widget de la barra: el icono, el contador o ambos.",
+      "icon": "Icono",
+      "label": "Panel · Barra"
+    },
+    "board_cards_per_column": {
+      "desc": "Máximo de tarjetas pedidas y dibujadas por columna.",
+      "label": "Tablero · Tarjetas por columna"
+    },
+    "board_project_number": {
+      "desc": "Número que muestra gh project list. 0 = sin definir.",
+      "label": "Tablero · Número de proyecto"
+    },
+    "board_project_owner": {
+      "desc": "Usuario u organización dueña del proyecto.",
+      "label": "Tablero · Dueño del proyecto"
+    },
+    "board_repo": {
+      "desc": "owner/nombre que usa el tablero. Vacío = el primero de tu lista.",
+      "label": "Tablero · Repositorio"
+    },
+    "board_show_assignees": {
+      "desc": "Muestra los asignados en las tarjetas.",
+      "label": "Tablero · Asignados"
+    },
+    "board_show_counts": {
+      "desc": "Muestra cuántas tarjetas tiene cada columna.",
+      "label": "Tablero · Contadores"
+    },
+    "board_show_labels": {
+      "desc": "Muestra los chips de labels en las tarjetas.",
+      "label": "Tablero · Labels en tarjetas"
+    },
+    "board_source": {
+      "desc": "De dónde salen las columnas: el campo Status de un proyecto o el estado del issue.",
+      "issues": "Estado del issue (open/closed)",
+      "label": "Tablero · Origen de columnas",
+      "project": "Proyecto (campo Status)"
+    },
+    "board_stale_days": {
+      "desc": "Marca las tarjetas sin actividad durante estos días.",
+      "label": "Tablero · Estancada a los (días)"
+    },
+    "board_status_field": {
+      "desc": "Nombre del campo de selección única usado para las columnas.",
+      "label": "Tablero · Campo de estado"
+    },
+    "create_default_labels": {
+      "desc": "Labels separados por coma que se precargan al crear un issue.",
+      "label": "Tablero · Labels por defecto"
+    },
+    "default_dashboard": {
+      "activity": "Actividad",
+      "board": "Board",
+      "desc": "Pestaña que se muestra al abrir el panel.",
+      "following": "Following",
+      "label": "Panel · Pestaña inicial",
+      "notifications": "Notificaciones",
+      "overview": "Overview",
+      "repositories": "Repositorios"
+    },
+    "density": {
+      "comfortable": "Cómoda",
+      "compact": "Compacta",
+      "cozy": "Media",
+      "desc": "Densidad de las tarjetas del tablero.",
+      "label": "General · Densidad"
+    },
+    "following_card_max_height": {
+      "desc": "Alto máximo de cada tarjeta agrupada, en píxeles.",
+      "label": "Following · Alto máximo de tarjeta"
+    },
+    "following_content_lines": {
+      "label": "Apariencia · Líneas de contenido"
+    },
+    "following_event_spacing": {
+      "label": "Apariencia · Separación de eventos"
+    },
+    "following_events_per_user": {
+      "desc": "Cuántos eventos públicos recientes se piden por persona.",
+      "label": "Following · Eventos por persona"
+    },
+    "following_hide_bots": {
+      "desc": "Oculta los eventos de cuentas bot.",
+      "label": "Following · Ocultar bots"
+    },
+    "following_history_days": {
+      "desc": "Sólo muestra actividad de estos días.",
+      "label": "Following · Historial (días)"
+    },
+    "following_ignored_repositories": {
+      "desc": "Repositorios a omitir como owner/name.",
+      "label": "Following · Repositorios ignorados"
+    },
+    "following_ignored_users": {
+      "desc": "Logins a omitir, sin distinguir mayúsculas.",
+      "label": "Following · Usuarios ignorados"
+    },
+    "following_include_prereleases": {
+      "desc": "Incluye nightly y release candidates.",
+      "label": "Following · Incluir prereleases"
+    },
+    "following_show_forks": {
+      "label": "Following · Mostrar forks"
+    },
+    "following_show_issues": {
+      "label": "Following · Mostrar issues"
+    },
+    "following_show_other": {
+      "label": "Following · Mostrar otros eventos"
+    },
+    "following_show_pull_requests": {
+      "label": "Following · Mostrar pull requests"
+    },
+    "following_show_pushes": {
+      "label": "Following · Mostrar pushes"
+    },
+    "following_show_releases": {
+      "label": "Following · Mostrar releases"
+    },
+    "following_show_stars": {
+      "label": "Following · Mostrar estrellas"
+    },
+    "following_user_limit": {
+      "desc": "Cuántas personas seguidas se consultan.",
+      "label": "Following · Personas"
+    },
+    "glyph": {
+      "desc": "Glifo usado en el widget de la barra.",
+      "label": "General · Icono de la barra"
+    },
+    "heatmap_cell_gap": {
+      "desc": "Espacio entre celdas.",
+      "label": "Mapa de calor · Separación"
+    },
+    "heatmap_cell_radius": {
+      "desc": "Redondeo de las celdas.",
+      "label": "Mapa de calor · Radio"
+    },
+    "heatmap_cell_size": {
+      "desc": "Tamaño de cada celda del calendario.",
+      "label": "Mapa de calor · Celda"
+    },
+    "heatmap_color_mode": {
+      "custom": "Personalizado",
+      "desc": "Origen de los colores del calendario.",
+      "github": "GitHub",
+      "label": "Mapa de calor · Colores",
+      "noctalia": "Tema de Noctalia"
+    },
+    "heatmap_custom_level_0": {
+      "desc": "Color hex #RRGGBB. Vacío = el del tema.",
+      "label": "Mapa de calor · Nivel 0"
+    },
+    "heatmap_custom_level_1": {
+      "desc": "Color hex #RRGGBB. Vacío = el del tema.",
+      "label": "Mapa de calor · Nivel 1"
+    },
+    "heatmap_custom_level_2": {
+      "desc": "Color hex #RRGGBB. Vacío = el del tema.",
+      "label": "Mapa de calor · Nivel 2"
+    },
+    "heatmap_custom_level_3": {
+      "desc": "Color hex #RRGGBB. Vacío = el del tema.",
+      "label": "Mapa de calor · Nivel 3"
+    },
+    "heatmap_custom_level_4": {
+      "desc": "Color hex #RRGGBB. Vacío = el del tema.",
+      "label": "Mapa de calor · Nivel 4"
+    },
+    "heatmap_empty_style": {
+      "background": "Fondo",
+      "desc": "Borde suave o contorno marcado para días sin contribuciones.",
+      "label": "Mapa de calor · Celda vacía",
+      "outline": "Contorno"
+    },
+    "heatmap_levels": {
+      "4": "4 niveles",
+      "5": "5 niveles",
+      "desc": "Cantidad de niveles de intensidad.",
+      "label": "Mapa de calor · Niveles"
+    },
+    "heatmap_show_legend": {
+      "label": "Mapa de calor · Leyenda"
+    },
+    "heatmap_show_months": {
+      "label": "Mapa de calor · Meses"
+    },
+    "heatmap_show_total": {
+      "label": "Mapa de calor · Total"
+    },
+    "heatmap_show_weekdays": {
+      "label": "Mapa de calor · Días"
+    },
+    "issue_default_filter": {
+      "all": "Todo",
+      "assigned": "Asignados a mí",
+      "created": "Creados por mí",
+      "desc": "Filtro de origen inicial para issues.",
+      "label": "Actividad · Filtro de issues"
+    },
+    "notification_default_filter": {
+      "all": "Todo",
+      "desc": "Filtro de estado con el que abre la pestaña.",
+      "label": "Notificaciones · Filtro inicial",
+      "read": "Leídas",
+      "unread": "No leídas"
+    },
+    "notification_history_days": {
+      "desc": "Limita el historial de leídas. Las no leídas se incluyen siempre.",
+      "label": "Notificaciones · Historial (días)"
+    },
+    "notification_mark_read_on_open": {
+      "desc": "En modo Synced, marca como leída en GitHub al abrir el enlace.",
+      "label": "Notificaciones · Marcar al abrir"
+    },
+    "notification_read_opacity": {
+      "desc": "Opacidad de las notificaciones ya leídas.",
+      "label": "Apariencia · Opacidad de leídas"
+    },
+    "notification_refresh_interval_seconds": {
+      "120": "Cada 120 segundos",
+      "300": "Cada 300 segundos",
+      "60": "Cada 60 segundos",
+      "desc": "Cada cuánto refresca las notificaciones en modo Synced.",
+      "label": "Notificaciones · Intervalo"
+    },
+    "notification_refresh_on_open": {
+      "desc": "Refresca las notificaciones al abrir el panel en modo Synced.",
+      "label": "Notificaciones · Refrescar al abrir"
+    },
+    "notification_sync_mode": {
+      "desc": "Legacy sólo lee y sigue el intervalo general. Synced refresca aparte y puede marcar como leídas en GitHub.",
+      "label": "Notificaciones · Modo",
+      "legacy": "Legacy (sólo lectura)",
+      "synced": "Sincronizado"
+    },
+    "notification_unread_border": {
+      "label": "Apariencia · Borde de no leída"
+    },
+    "notification_unread_dot": {
+      "label": "Apariencia · Punto de no leída"
+    },
+    "open_links": {
+      "desc": "Abre los enlaces de issues/PRs/repos con xdg-open.",
+      "label": "General · Abrir en el navegador"
+    },
+    "overview_stats_layout": {
+      "columns4": "Cuatro columnas",
+      "compact": "Compacta",
+      "grid": "Grilla",
+      "label": "Apariencia · Layout de estadísticas"
+    },
+    "panel_mode": {
+      "compact": "Compacto (anclado)",
+      "desc": "Panel compacto anclado o grande flotante.",
+      "float": "Grande (flotante)",
+      "label": "General · Estilo del panel"
+    },
+    "pr_default_filter": {
+      "all": "Todo",
+      "created": "Creados por mí",
+      "desc": "Filtro de origen inicial para pull requests.",
+      "label": "Actividad · Filtro de PRs",
+      "review": "Review pedido"
+    },
+    "refresh_interval_minutes": {
+      "15": "Cada 15 minutos",
+      "30": "Cada 30 minutos",
+      "5": "Cada 5 minutos",
+      "desc": "Cada cuánto GitHub Kanban refresca sus datos de GitHub.",
+      "label": "Intervalo de refresco"
+    },
+    "repositories_layout": {
+      "desc": "Lista o grilla.",
+      "grid": "Grilla",
+      "label": "Apariencia · Layout de repositorios",
+      "list": "Lista"
+    },
+    "repositories_show_language": {
+      "label": "Apariencia · Lenguaje del repo"
+    },
+    "repositories_show_stats": {
+      "label": "Apariencia · Estadísticas del repo"
+    },
+    "show_activity": {
+      "desc": "Muestra la pestaña de actividad.",
+      "label": "Panel · Actividad"
+    },
+    "show_board": {
+      "desc": "Muestra la pestaña del tablero kanban.",
+      "label": "Tablero · Mostrar pestaña"
+    },
+    "show_following": {
+      "desc": "Muestra la pestaña del feed.",
+      "label": "Panel · Following"
+    },
+    "show_label": {
+      "desc": "Apagado = sólo el icono.",
+      "label": "General · Texto en la barra"
+    },
+    "show_notifications": {
+      "desc": "Muestra la pestaña de notificaciones.",
+      "label": "Panel · Notificaciones"
+    },
+    "show_overview": {
+      "desc": "Muestra la pestaña Overview.",
+      "label": "Panel · Overview"
+    },
+    "show_repositories": {
+      "desc": "Muestra la pestaña de repositorios.",
+      "label": "Panel · Repositorios"
+    },
+    "starred_repository_limit": {
+      "desc": "Cuántos repositorios con estrella se revisan buscando releases.",
+      "label": "Following · Repos con estrella"
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+    "settings.layout_mode.auto": "Automático",
+    "settings.layout_mode.fixed": "Fijo"
+  },
+  "status": {
+    "auth_banner": "gh: {error}",
+    "auth_error": "gh no tiene sesión. Corré `gh auth login`.",
+    "created": "Issue creado",
+    "loading": "Cargando desde GitHub…",
+    "missing_xdg_open": "No se encontró xdg-open",
+    "moved": "Tarjeta movida",
+    "no_project": "No hay proyecto elegido. Elegí uno en los ajustes del repositorio.",
+    "no_repo": "No hay repositorio elegido. Elegí uno de la lista.",
+    "preparing_calendar": "Preparando el calendario de contribuciones…",
+    "projects_scope": "Proyectos no disponibles: {error}",
+    "empty_board": "Este repositorio no tiene issues para mostrar (puede tener los issues deshabilitados o estar vacío).",
+    "issues_disabled": "Este repositorio tiene los issues deshabilitados: no se puede mostrar un tablero. Elegí otro repositorio.",
+    "invalid_repo": "El repositorio no existe o no tenés acceso. Revisá el repositorio en los ajustes.",
+    "no_issues": "Este repositorio no tiene ningún issue. Las columnas están vacías porque no hay nada que mostrar.",
+    "no_project_items": "Este proyecto no tiene items. Agregá items o elegí otro proyecto."
+  },
+  "time": {
+    "days": "hace {count}d",
+    "hours": "hace {count}h",
+    "minutes": "hace {count}m"
+  },
+  "widget": {
+    "bar_summary": "{cards} tarjetas · {unread} sin leer",
+    "bar_tooltip": "Kanban · {summary}"
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automático: el host mide el panel y el contenido se ajusta. Fijo: el plugin pide un ancho explícito.",
+  "settings.layout_mode.auto": "Automático",
+  "settings.layout_mode.fixed": "Fijo"
+}

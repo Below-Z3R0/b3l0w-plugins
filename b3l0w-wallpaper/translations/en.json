@@ -1,0 +1,275 @@
+{
+	"plugin_name": "b3l0w Wallpaper",
+	"plugin_description": "Play Wallpaper Engine wallpapers from the Steam Workshop, with palette sync, timed cycling and rejection of the ones that saturate the GPU.",
+	"widget": {
+		"idle": "b3l0w wallpaper",
+		"playing": "b3l0w wallpaper — {name}",
+		"playing_unknown": "b3l0w wallpaper — wallpaper running",
+		"cycling": "b3l0w wallpaper — cycling {count} wallpapers"
+	},
+	"panel": {
+		"title": "b3l0w wallpaper",
+		"search": "Search wallpapers…",
+		"count": "{count} wallpapers",
+		"view_carousel": "Carousel",
+		"view_grid": "Grid",
+		"toggle_view": "Switch between carousel and grid",
+		"refresh": "Rescan the Workshop",
+		"settings": "Settings",
+		"prev": "Previous",
+		"next": "Next",
+		"range": "{from}–{to} of {total}",
+		"apply": "Apply",
+		"stop": "Stop",
+		"stop_tooltip": "Stop the wallpaper on this output and restore the previous Noctalia wallpaper",
+		"configure": "Configure this wallpaper",
+		"apply_options": "Apply",
+		"back": "Back to wallpapers",
+		"select_multiple": "Select multiple",
+		"select_multiple_tooltip": "Pick several wallpapers and cycle through them on a timer",
+		"selected_count": "{count} selected",
+		"cycle_start": "Start cycle",
+		"cycle_stop": "Stop cycle",
+		"cycle_running": "Cycling {count} wallpapers every {minutes} min",
+		"cycle_started": "Cycling {count} wallpapers every {minutes} min",
+		"cycle_needs_selection": "Select at least one wallpaper before starting a cycle",
+		"every": "Every",
+		"minutes": "min",
+		"order_random": "Random",
+		"order_sequential": "In order",
+		"no_wallpapers": "No Wallpaper Engine wallpapers found",
+		"list_failed": "Could not list the Wallpaper Engine library",
+		"missing_project_json": "No project.json for {name}",
+		"no_thumb": "No preview available",
+		"gpu_badge": "GPU load {pct}%",
+		"properties": "Wallpaper properties",
+		"no_properties": "This wallpaper exposes no configurable properties",
+		"unlabeled": "Show {count} options the author left unnamed",
+		"defaults": "Global defaults",
+		"defaults_tooltip": "Settings applied to every wallpaper",
+		"options": "Options",
+		"diagnostics": "GPU and diagnostics",
+		"apply_failed": "Could not start the wallpaper",
+		"missing_item": "That wallpaper is no longer in the library",
+		"source_engine": "Wallpaper Engine",
+		"source_images": "Local images",
+		"source_videos": "Local videos",
+		"source_wallhaven": "Wallhaven",
+		"wh_query": "Search Wallhaven…",
+		"wh_order": "Order",
+		"wh_resolution": "Min resolution",
+		"wh_ratio": "Aspect ratio",
+		"wh_any": "Any",
+		"wh_landscape": "Landscape",
+		"wh_portrait": "Portrait",
+		"wh_desc": "Newest",
+		"wh_asc": "Oldest",
+		"options_wallhaven": "Wallhaven",
+		"wh_purity": "Purity",
+		"wh_categories": "Categories",
+		"wh_sorting": "Sort by",
+		"engine_scope": "Applies to Wallpaper Engine and 3D scenes. Videos use mpvpaper with their own options.",
+		"only_favorites": "Favorites only",
+		"favorite": "Favorite",
+		"pause": "Pause",
+		"resume": "Resume",
+		"wh_results": "Results to load",
+		"search_go": "Search",
+		"wh_sort_date": "Recent",
+		"wh_sort_relevance": "Relevance",
+		"wh_sort_random": "Random",
+		"wh_sort_favorites": "Favorites",
+		"wh_sort_views": "Views",
+		"wh_sort_hot": "Hot",
+		"page_jump": "Type a page number",
+		"wh_res_atleast": "At least",
+		"wh_res_exact": "Exact",
+		"wh_width": "Width",
+		"wh_height": "Height",
+		"wh_clear": "Clear resolution",
+		"props_title": "Wallpaper properties",
+		"props_clear": "Reset",
+		"props_hint": "Enter saves and relaunches. Empty = project value.",
+		"wh_loaded": "loaded",
+		"color_invalid": "Invalid color",
+		"apply_on": "Apply on",
+		"options_layout": "Layout"
+	},
+	"engine": {
+		"title": "Engine",
+		"playback": "Playback",
+		"fps": "FPS limit",
+		"scaling": "Scaling mode",
+		"clamp": "Clamp mode",
+		"layer": "Wayland layer",
+		"volume": "Volume",
+		"silent": "Mute this wallpaper",
+		"disable_mouse": "Disable mouse interaction",
+		"disable_parallax": "Disable parallax",
+		"disable_particles": "Disable particles",
+		"no_audio_processing": "Disable audio processing",
+		"no_fullscreen_pause": "Keep playing when an app is fullscreen",
+		"fullscreen_pause_only_active": "Pause only for the active fullscreen window",
+		"noautomute": "Disable automute",
+		"inherit": "Use global default",
+		"unset": "Engine default",
+		"apply": "Apply",
+		"reset": "Reset to defaults",
+		"clear_overrides": "Also clear per-wallpaper overrides for the settings changed here",
+		"scaling_default": "Default",
+		"scaling_fill": "Fill",
+		"scaling_fit": "Fit",
+		"scaling_stretch": "Stretch",
+		"clamp_clamp": "Clamp",
+		"clamp_border": "Border",
+		"clamp_repeat": "Repeat",
+		"layer_background": "Background",
+		"layer_below": "Below",
+		"layer_default": "Default",
+		"layer_top": "Top layer",
+		"layer_overlay": "Overlay layer",
+		"section_playback": "Playback",
+		"section_image": "Image",
+		"section_advanced": "Performance",
+		"section_input": "Input"
+	},
+	"gpu": {
+		"title": "GPU load",
+		"blocked": "{name} was not applied: it is blocked for saturating the GPU",
+		"marked": "Wallpaper blocked for GPU load",
+		"marked_body": "{busy}% of the sampling window with the GPU busy",
+		"probe": "Measure GPU load",
+		"probe_all": "Measure every wallpaper",
+		"probe_running": "Measuring {name}",
+		"probe_progress": "{done} of {total} measured",
+		"probe_done": "Measurement finished",
+		"busy": "{pct}% busy",
+		"idle": "{pct}% idle",
+		"freq": "{mhz} MHz",
+		"allow": "Allow anyway",
+		"allowed": "{name} is allowed again",
+		"unprobed": "Not measured yet",
+		"reason_gpu": "Blocked automatically: GPU load above the threshold",
+		"reason_manual": "Blocked by you",
+		"empty": "No wallpaper is blocked",
+		"explainer": "Load is measured, never guessed from the wallpaper type: the engine counts how long the GPU spent out of RC6 while the wallpaper was on screen, over a {sample} ms window that starts after a {warmup} ms warm-up.",
+		"unavailable": "This GPU does not expose RC6 counters, so automatic detection stays off",
+		"dump_title": "Diagnostic report",
+		"dump_desc": "Writes state, catalog, live processes and the tail of engine.log.",
+		"dump_button": "Generate report"
+	},
+	"settings": {
+		"grid_columns": {
+			"label": "Wallpapers per row",
+			"description": "How many wallpapers a grid row shows. The panel has a fixed size, so fewer columns means larger previews."
+		},
+		"default_view": {
+			"label": "View on open",
+			"description": "Carousel pages through the library a screen at a time; grid scrolls the whole library vertically.",
+			"options": {
+				"carousel": "Carousel",
+				"grid": "Grid"
+			}
+		},
+		"sync_colors": {
+			"label": "Sync shell colors with the wallpaper",
+			"description": "Generate the Noctalia palette from the wallpaper being applied, the way an ordinary wallpaper does. Uses the Workshop preview, or a decoded frame when ffmpeg is installed."
+		},
+		"gpu_threshold": {
+			"label": "GPU load threshold",
+			"description": "A wallpaper is rejected when the GPU stays at or above this share of the sampling window. Raise it to keep heavier wallpapers."
+		},
+		"probe_warmup_ms": {
+			"label": "Warm-up before measuring",
+			"description": "Time the wallpaper gets on screen before the counters are read, so shader compilation is not charged to it."
+		},
+		"probe_sample_ms": {
+			"label": "Sampling window",
+			"description": "How long the GPU counters are read. Short windows are noisy, long ones make a full measurement pass slow."
+		},
+		"images_dir": {
+			"label": "Images folder",
+			"description": "Folder scanned by the local images mode."
+		},
+		"videos_dir": {
+			"label": "Videos folder",
+			"description": "Folder scanned by the local videos mode (played with mpvpaper)."
+		},
+		"wallhaven_api_key": {
+			"label": "Wallhaven API key",
+			"description": "Optional. Without a key the search only returns SFW results."
+		},
+		"scan_depth": {
+			"label": "Subfolder depth",
+			"description": "How many subfolder levels the local modes scan."
+		},
+		"animations": {
+			"label": "Animations",
+			"description": "Turn off on slower machines to save CPU."
+		},
+		"video_loop": {
+			"label": "Loop",
+			"description": "Restarts the video when it ends."
+		},
+		"video_mute": {
+			"label": "Mute",
+			"description": "Does not play the video audio."
+		},
+		"video_hwdec": {
+			"label": "Hardware decoding",
+			"description": "Decodes with the GPU; much lower cost on 4K."
+		},
+		"video_options": {
+			"label": "Extra mpv options",
+			"description": "Space separated mpv flags, passed through as-is."
+		},
+		"carousel_spacing": {
+			"label": "Spacing between cards",
+			"description": "0 keeps them glued, 100 spreads them the most."
+		},
+		"download_dir": {
+			"label": "Download folder",
+			"description": "Where to save Wallhaven wallpapers. Empty = plugin data folder."
+		},
+		"wallhaven_max": {
+			"label": "Wallhaven",
+			"description": "How many Wallhaven wallpapers to load (24 per page)"
+		},
+		"local_sort": {
+			"label": "Folder order",
+			"name": "Name",
+			"date": "Date",
+			"random": "Random"
+		},
+		"color": {
+			"label": "Solid color wallpaper"
+		},
+		"debug": {
+			"label": "Debug mode",
+			"description": "Writes detailed traces to the log: every IPC action, process spawn, scan and error with context.",
+			"on": "On",
+			"off": "Off"
+		},
+		"layout": {
+			"apply_on": "Show \"Apply on\"",
+			"apply_on_desc": "Output selector in the header, in every mode.",
+			"view_label": "Label on the view switch",
+			"view_label_desc": "Off leaves only the icon of the carousel/grid switch.",
+			"style_hint": "Full: captions and counters · Minimal: the image and nothing else",
+			"full": "Full",
+			"minimal": "Minimal",
+			"auto": "auto",
+			"carousel": "Carousel",
+			"grid": "Grid",
+			"carousel_w": "Carousel: card width",
+			"carousel_h": "Carousel: card height",
+			"carousel_slots": "Wallpapers visible in the carousel",
+      "carousel_panel_w": "Carousel panel width",
+      "grid_panel_w": "Grid panel width",
+			"grid_w": "Grid: card width",
+			"grid_h": "Grid: card height",
+			"progress": "Carousel progress bar",
+			"progress_desc": "Position indicator under the strip."
+		}
+	}
+}

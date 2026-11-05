@@ -1,0 +1,275 @@
+{
+  "plugin_name": "b3l0w Wallpaper",
+  "plugin_description": "Reproduce fondos de Wallpaper Engine del Workshop de Steam, con sincronización de paleta, rotación por tiempo y rechazo de los que saturan la GPU.",
+  "widget": {
+    "idle": "b3l0w wallpaper",
+    "playing": "b3l0w wallpaper — {name}",
+    "playing_unknown": "b3l0w wallpaper — fondo en reproducción",
+    "cycling": "b3l0w wallpaper — rotando {count} fondos"
+  },
+  "panel": {
+    "title": "b3l0w wallpaper",
+    "search": "Buscar wallpapers…",
+    "count": "{count} fondos",
+    "view_carousel": "Carrusel",
+    "view_grid": "Grilla",
+    "toggle_view": "Cambiar entre carrusel y grilla",
+    "refresh": "Volver a escanear el Workshop",
+    "settings": "Ajustes",
+    "prev": "Anterior",
+    "next": "Siguiente",
+    "range": "{from}–{to} de {total}",
+    "apply": "Aplicar",
+    "stop": "Detener",
+    "stop_tooltip": "Detiene el fondo en esta salida y restaura el fondo anterior de Noctalia",
+    "configure": "Configurar este fondo",
+    "apply_options": "Aplicar",
+    "back": "Volver a los fondos",
+    "select_multiple": "Seleccionar varios",
+    "select_multiple_tooltip": "Elegí varios fondos y rotalos con un temporizador",
+    "selected_count": "{count} seleccionados",
+    "cycle_start": "Iniciar rotación",
+    "cycle_stop": "Detener rotación",
+    "cycle_running": "Rotando {count} fondos cada {minutes} min",
+    "cycle_started": "Rotando {count} fondos cada {minutes} min",
+    "cycle_needs_selection": "Elegí al menos un fondo antes de iniciar la rotación",
+    "every": "Cada",
+    "minutes": "min",
+    "order_random": "Aleatorio",
+    "order_sequential": "En orden",
+    "no_wallpapers": "No se encontraron fondos de Wallpaper Engine",
+    "list_failed": "No se pudo listar la biblioteca de Wallpaper Engine",
+    "missing_project_json": "{name} no tiene project.json",
+    "no_thumb": "Sin vista previa",
+    "gpu_badge": "Carga de GPU {pct}%",
+    "properties": "Propiedades del fondo",
+    "no_properties": "Este fondo no expone propiedades configurables",
+    "unlabeled": "Mostrar {count} opciones que el autor dejó sin nombre",
+    "defaults": "Valores globales",
+    "defaults_tooltip": "Ajustes que se aplican a todos los fondos",
+    "options": "Opciones",
+    "diagnostics": "GPU y diagnóstico",
+    "apply_failed": "No se pudo iniciar el fondo",
+    "missing_item": "Ese fondo ya no está en la biblioteca",
+    "source_engine": "Wallpaper Engine",
+    "source_images": "Imágenes locales",
+    "source_videos": "Videos locales",
+    "source_wallhaven": "Wallhaven",
+    "wh_query": "Buscar en Wallhaven…",
+    "wh_order": "Orden",
+    "wh_resolution": "Resolución mínima",
+    "wh_ratio": "Proporción",
+    "wh_any": "Cualquiera",
+    "wh_landscape": "Panorámico",
+    "wh_portrait": "Vertical",
+    "wh_desc": "Más nuevos",
+    "wh_asc": "Más antiguos",
+    "options_wallhaven": "Wallhaven",
+    "wh_purity": "Pureza",
+    "wh_categories": "Categorías",
+    "wh_sorting": "Ordenar por",
+    "engine_scope": "Aplica a Wallpaper Engine y escenas 3D. Los videos usan mpvpaper con sus propias opciones.",
+    "only_favorites": "Sólo favoritos",
+    "favorite": "Favorito",
+    "pause": "Pausar",
+    "resume": "Reanudar",
+    "wh_results": "Resultados a cargar",
+    "search_go": "Buscar",
+    "wh_sort_date": "Recientes",
+    "wh_sort_relevance": "Relevancia",
+    "wh_sort_random": "Aleatorio",
+    "wh_sort_favorites": "Favoritos",
+    "wh_sort_views": "Vistas",
+    "wh_sort_hot": "Caliente",
+    "page_jump": "Escribí un número de página",
+    "wh_res_atleast": "Al menos",
+    "wh_res_exact": "Exacta",
+    "wh_width": "Ancho",
+    "wh_height": "Alto",
+    "wh_clear": "Limpiar resolución",
+    "props_title": "Propiedades del wallpaper",
+    "props_clear": "Restablecer",
+    "props_hint": "Enter guarda y relanza el fondo. Vacío = valor del proyecto.",
+    "wh_loaded": "cargados",
+    "color_invalid": "Color inválido",
+    "apply_on": "Aplicar en",
+    "options_layout": "Disposición"
+  },
+  "engine": {
+    "title": "Motor",
+    "playback": "Reproducción",
+    "fps": "Límite de FPS",
+    "scaling": "Modo de escalado",
+    "clamp": "Modo de ajuste",
+    "layer": "Capa de Wayland",
+    "volume": "Volumen",
+    "silent": "Silenciar este fondo",
+    "disable_mouse": "Desactivar interacción con el mouse",
+    "disable_parallax": "Desactivar paralaje",
+    "disable_particles": "Desactivar partículas",
+    "no_audio_processing": "Desactivar procesamiento de audio",
+    "no_fullscreen_pause": "Seguir reproduciendo con una app en pantalla completa",
+    "fullscreen_pause_only_active": "Pausar solo con la ventana de pantalla completa activa",
+    "noautomute": "Desactivar el silenciado automático",
+    "inherit": "Usar el valor global",
+    "unset": "Valor del motor",
+    "apply": "Aplicar",
+    "reset": "Volver a los valores globales",
+    "clear_overrides": "Borrar también los ajustes por fondo de las opciones cambiadas acá",
+    "scaling_default": "Predeterminado",
+    "scaling_fill": "Rellenar",
+    "scaling_fit": "Ajustar",
+    "scaling_stretch": "Estirar",
+    "clamp_clamp": "Recortar",
+    "clamp_border": "Borde",
+    "clamp_repeat": "Repetir",
+    "layer_background": "Fondo",
+    "layer_below": "Debajo",
+    "layer_default": "Predeterminado",
+    "layer_top": "Capa superior",
+    "layer_overlay": "Capa overlay",
+    "section_playback": "Reproducción",
+    "section_image": "Imagen",
+    "section_advanced": "Rendimiento",
+    "section_input": "Entrada"
+  },
+  "gpu": {
+    "title": "Carga de GPU",
+    "blocked": "No se aplicó {name}: está bloqueado por saturar la GPU",
+    "marked": "Fondo bloqueado por carga de GPU",
+    "marked_body": "{busy}% de la ventana de muestreo con la GPU ocupada",
+    "probe": "Medir carga de GPU",
+    "probe_all": "Medir todos los fondos",
+    "probe_running": "Midiendo {name}",
+    "probe_progress": "{done} de {total} medidos",
+    "probe_done": "Medición terminada",
+    "busy": "{pct}% ocupada",
+    "idle": "{pct}% inactiva",
+    "freq": "{mhz} MHz",
+    "allow": "Permitir igual",
+    "allowed": "{name} vuelve a estar permitido",
+    "unprobed": "Sin medir todavía",
+    "reason_gpu": "Bloqueado automáticamente: la carga de GPU supera el umbral",
+    "reason_manual": "Bloqueado por vos",
+    "empty": "No hay ningún fondo bloqueado",
+    "explainer": "La carga se mide, nunca se deduce del tipo de fondo: el motor cuenta cuánto tiempo estuvo la GPU fuera de RC6 mientras el fondo estaba en pantalla, en una ventana de {sample} ms que arranca después de un calentamiento de {warmup} ms.",
+    "unavailable": "Esta GPU no expone contadores RC6, así que la detección automática queda desactivada",
+    "dump_title": "Reporte de diagnóstico",
+    "dump_desc": "Escribe estado, catálogo, procesos vivos y el final de engine.log.",
+    "dump_button": "Generar reporte"
+  },
+  "settings": {
+    "grid_columns": {
+      "label": "Fondos por fila",
+      "description": "Cuántos fondos muestra cada fila de la grilla. El panel tiene tamaño fijo, así que menos columnas significa vistas previas más grandes."
+    },
+    "default_view": {
+      "label": "Vista al abrir",
+      "description": "El carrusel pasa la biblioteca de a una pantalla; la grilla la recorre entera en vertical.",
+      "options": {
+        "carousel": "Carrusel",
+        "grid": "Grilla"
+      }
+    },
+    "sync_colors": {
+      "label": "Sincronizar los colores del entorno con el fondo",
+      "description": "Genera la paleta de Noctalia a partir del fondo que se aplica, igual que con un fondo común. Usa la vista previa del Workshop, o un cuadro decodificado si ffmpeg está instalado."
+    },
+    "gpu_threshold": {
+      "label": "Umbral de carga de GPU",
+      "description": "Un fondo se rechaza cuando la GPU se mantiene en este porcentaje o más de la ventana de muestreo. Subilo para conservar fondos más pesados."
+    },
+    "probe_warmup_ms": {
+      "label": "Calentamiento antes de medir",
+      "description": "Tiempo que el fondo tiene en pantalla antes de leer los contadores, para no cargarle la compilación de shaders."
+    },
+    "probe_sample_ms": {
+      "label": "Ventana de muestreo",
+      "description": "Cuánto tiempo se leen los contadores de la GPU. Ventanas cortas dan ruido; ventanas largas hacen lenta una medición completa."
+    },
+    "images_dir": {
+      "label": "Carpeta de imágenes",
+      "description": "Carpeta que lee el modo de imágenes locales."
+    },
+    "videos_dir": {
+      "label": "Carpeta de videos",
+      "description": "Carpeta que lee el modo de videos locales (se reproducen con mpvpaper)."
+    },
+    "wallhaven_api_key": {
+      "label": "API key de Wallhaven",
+      "description": "Opcional. Sin clave la búsqueda sólo devuelve resultados SFW."
+    },
+    "scan_depth": {
+      "label": "Profundidad de subcarpetas",
+      "description": "Cuántos niveles de subcarpetas recorren los modos locales."
+    },
+    "animations": {
+      "label": "Animaciones",
+      "description": "Se puede apagar para gastar menos CPU."
+    },
+    "video_loop": {
+      "label": "Repetir en bucle",
+      "description": "Reinicia el video cuando termina."
+    },
+    "video_mute": {
+      "label": "Silenciar",
+      "description": "No reproduce el audio del video."
+    },
+    "video_hwdec": {
+      "label": "Decodificación por hardware",
+      "description": "Usa la GPU para decodificar; baja mucho el consumo en 4K."
+    },
+    "video_options": {
+      "label": "Opciones extra de mpv",
+      "description": "Flags de mpv separados por espacio, se agregan tal cual."
+    },
+    "carousel_spacing": {
+      "label": "Separación entre tarjetas",
+      "description": "0 las deja pegadas, 100 las separa al máximo."
+    },
+    "download_dir": {
+      "label": "Carpeta de descargas",
+      "description": "Dónde guardar los wallpapers de Wallhaven. Vacío = carpeta de datos del plugin."
+    },
+    "wallhaven_max": {
+      "label": "Wallhaven",
+      "description": "Cuántos wallpapers de Wallhaven se cargan (24 por página)"
+    },
+    "local_sort": {
+      "label": "Orden de las carpetas",
+      "name": "Nombre",
+      "date": "Fecha",
+      "random": "Aleatorio"
+    },
+    "color": {
+      "label": "Wallpaper de color"
+    },
+    "debug": {
+      "label": "Modo debug",
+      "description": "Deja trazas detalladas en el log: cada acción IPC, el arranque de procesos, los escaneos y los errores con contexto.",
+      "on": "Activado",
+      "off": "Desactivado"
+    },
+    "layout": {
+      "apply_on": "Mostrar \"Aplicar en\"",
+      "apply_on_desc": "Selector de salida en la barra, en todos los modos.",
+      "view_label": "Etiqueta en el selector de vista",
+      "view_label_desc": "Apagado deja sólo el icono del selector carrusel/grilla.",
+      "style_hint": "Completo: nombres y contadores · Minimalista: la imagen y nada más",
+      "full": "Completo",
+      "minimal": "Minimalista",
+      "auto": "auto",
+      "carousel": "Carrusel",
+      "grid": "Grilla",
+      "carousel_w": "Carrusel: ancho de tarjeta",
+      "carousel_h": "Carrusel: alto de tarjeta",
+      "carousel_slots": "Wallpapers visibles en el carrusel",
+      "carousel_panel_w": "Carrusel: ancho del panel",
+      "grid_panel_w": "Grilla: ancho del panel",
+      "grid_w": "Grilla: ancho de tarjeta",
+      "grid_h": "Grilla: alto de tarjeta",
+      "progress": "Barra de progreso del carrusel",
+      "progress_desc": "Indicador de posición debajo de la tira."
+    }
+  }
+}

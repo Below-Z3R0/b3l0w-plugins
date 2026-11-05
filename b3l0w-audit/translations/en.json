@@ -1,0 +1,227 @@
+{
+  "plugin": {
+    "title": "b3l0w Audit",
+    "description": "Arch/CachyOS advisories, pending updates for Noctalia and Umbriel, and whether the b3l0w CLI needs a rebuild."
+  },
+  "settings": {
+    "check_hours": {
+      "label": "Vulnerability scan interval (hours)",
+      "desc": "Hours between arch-audit runs against the Arch Security Team tracker."
+    },
+    "updates_minutes": {
+      "label": "Update check interval (minutes)",
+      "desc": "Minutes between pacman -Qu and the b3l0w CLI freshness check."
+    },
+    "notify_new": {
+      "label": "Notify about new advisories",
+      "desc": "Toast when a check finds advisories that were not there before."
+    },
+    "notify_min_severity": {
+      "label": "Minimum severity to notify",
+      "desc": "Advisories below this severity stay silent.",
+      "critical": "Critical",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "ignore_packages": {
+      "label": "Ignored packages",
+      "desc": "An advisory is hidden only when every package it lists is ignored here."
+    },
+    "show_label": {
+      "label": "Show count in the bar",
+      "desc": "Off = icon only."
+    },
+    "hide_when_clean": {
+      "label": "Hide when clean",
+      "desc": "Hide the widget when there are no advisories and nothing to update."
+    },
+    "glyph": {
+      "label": "Bar icon",
+      "desc": "Glyph used while advisories are present. Clean checks show a check shield."
+    },
+    "panel_mode": {
+      "label": "Panel style",
+      "desc": "Compact attached panel or large floating one.",
+      "compact": "Compact (attached)",
+      "float": "Large (floating)"
+    },
+    "animations": {
+      "label": "Animations",
+      "desc": "Staggered rows when switching tabs or pages."
+    },
+    "density": {
+      "label": "Density",
+      "desc": "Row height.",
+      "compact": "Compact",
+      "cozy": "Cozy",
+      "comfortable": "Comfortable"
+    },
+    "cli_bin": {
+      "label": "b3l0w CLI binary",
+      "desc": "Path of the compiled binary. Its mtime is compared with the newest .go file."
+    },
+    "cli_repo": {
+      "label": "b3l0w repo",
+      "desc": "Folder with the Go sources; Update all runs go build ./cmd/b3l0w here."
+    },
+    "settings.layout_mode.label": "Layout",
+    "settings.layout_mode.desc": "Automatic: the host measures the panel and the content fits it. Fixed: the plugin asks for an explicit width.",
+    "settings.layout_mode.auto": "Automatic",
+    "settings.layout_mode.fixed": "Fixed"
+  },
+  "panel": {
+    "title": "Audit",
+    "tab": {
+      "vulns": "Vulnerabilities",
+      "updates": "Updates"
+    },
+    "working": "working…",
+    "clean": "No known advisories",
+    "never_checked": "Not checked yet",
+    "refresh": "Check now",
+    "settings": "Plugin settings",
+    "close": "Close",
+    "update_all": "Update all",
+    "update_all_hint": "Lists pending updates and rebuilds the CLI",
+    "update_all_hint_stale": "CLI out of date: Update all rebuilds it",
+    "update_all_tip": "Refresh the list, then go build the b3l0w CLI. Packages are never installed without confirmation.",
+    "fixed": "Fixed in {version}",
+    "no_fix": "No fixed version yet",
+    "cves": "CVEs",
+    "no_cves": "none listed",
+    "open_advisory": "Open advisory",
+    "copy_upgrade": "Copy upgrade",
+    "copy_install": "Copy install command",
+    "missing": "arch-audit is not installed: cached results only",
+    "fix_only": "With fix",
+    "fix_only_tip": "Only advisories that already have a fixed version.",
+    "filter_empty": "No advisories match these filters.",
+    "empty": "Nothing to report",
+    "page_of": "Page {page}/{pages} · {total} advisories",
+    "confirm": "Confirm",
+    "update_one": "Update",
+    "update_one_tip": "Runs pkexec pacman -S --needed for this package. Arch does not support partial upgrades: prefer a full upgrade.",
+    "copy_pkg": "Copy command",
+    "up_to_date": "Up to date",
+    "more_rows": "+{count} more pending (full list in a terminal)",
+    "checked": "Checked {age}",
+    "copied": "Copied",
+    "unknown_action": "Unknown action: {action}",
+    "noctalia": {
+      "title": "Noctalia",
+      "sub": "package {installed} · binary {version}"
+    },
+    "umbriel": {
+      "title": "Umbriel",
+      "sub": "package {installed} · portal {portal}"
+    },
+    "updates": {
+      "at": "{total} pending · {source} · listed {age}"
+    },
+    "system": {
+      "title": "System",
+      "sub": "other packages pending ({source})"
+    },
+    "cli": {
+      "title": "b3l0w CLI",
+      "stale": "Needs rebuild",
+      "fresh": "Up to date",
+      "ages": "binary {binary} · newest source {source}",
+      "source": "{path}",
+      "rebuild": "Rebuild",
+      "rebuild_tip": "Runs go build ./cmd/b3l0w against the binary path from settings.",
+      "copy": "Copy build command"
+    }
+  },
+  "count": {
+    "advisory": {
+      "one": "1 advisory",
+      "other": "{count} advisories"
+    },
+    "pending": {
+      "one": "1 pending",
+      "other": "{count} pending"
+    },
+    "ignored": {
+      "one": "1 ignored",
+      "other": "{count} ignored"
+    },
+    "new": {
+      "one": "1 advisory",
+      "other": "{count} advisories"
+    }
+  },
+  "severity": {
+    "all": "All severities",
+    "critical": "Critical",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "unknown": "Unknown"
+  },
+  "status": {
+    "vulnerable": "Vulnerable",
+    "unknown": "Unknown",
+    "fixed": "Fixed",
+    "not_affected": "Not affected",
+    "testing": "Testing"
+  },
+  "time": {
+    "never": "never",
+    "just_now": "just now",
+    "minutes_ago": {
+      "one": "{count} minute ago",
+      "other": "{count} minutes ago"
+    },
+    "hours_ago": {
+      "one": "{count} hour ago",
+      "other": "{count} hours ago"
+    },
+    "days_ago": {
+      "one": "{count} day ago",
+      "other": "{count} days ago"
+    }
+  },
+  "notify": {
+    "title": "Security advisories",
+    "body": {
+      "one": "1 new advisory affects {packages}.",
+      "other": "{count} new advisories affect {packages}."
+    },
+    "some_packages": "your installed packages"
+  },
+  "service": {
+    "error": {
+      "missing": "arch-audit is not installed.",
+      "exit": "arch-audit failed: {detail}",
+      "json": "arch-audit returned invalid JSON.",
+      "no_detail": "no details"
+    }
+  },
+  "updates": {
+    "invalid_package": "Invalid package name.",
+    "no_pkexec": "pkexec is not available: copy the command and run it in a terminal.",
+    "pkg_done": "{name} updated.",
+    "pkg_fail": "{name} could not be updated: {detail}",
+    "toast_summary": "CLI: {cli} · {pending} pending updates",
+    "cli_uptodate": "already up to date",
+    "cli_rebuilt": "rebuilt",
+    "cli_failed_detail": "go build failed: {detail}"
+  },
+  "widget": {
+    "counts_none": "None",
+    "updates_value": "Noctalia {noctalia} · Umbriel {umbriel} · CLI: {cli}",
+    "tooltip": {
+      "state": "Advisories",
+      "updates": "Updates",
+      "new": "New since last check",
+      "checked": "Checked",
+      "hint": "Left click details · Right click check now"
+    }
+  },
+  "settings.layout_mode.label": "Layout",
+  "settings.layout_mode.desc": "Automatic: the host measures the panel and the content fits it. Fixed: the plugin asks for an explicit width.",
+  "settings.layout_mode.auto": "Automatic",
+  "settings.layout_mode.fixed": "Fixed"
+}
