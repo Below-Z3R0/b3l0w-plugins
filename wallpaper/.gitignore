@@ -1,7 +1,0 @@
-*.zip
-*.tar.gz
-*.log
-.DS_Store
-.panel-spec.luau
-.panel-spec.luau.err
-tests/.probe_tmp.luau
