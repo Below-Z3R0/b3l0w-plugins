@@ -1,0 +1,87 @@
+[
+  {
+    "index": 60,
+    "name": "bluez_card.31_92_D9_51_AF_84",
+    "driver": "bluez5",
+    "owner_module": 4294967295,
+    "properties": {
+      "api.bluez5.address": "31:92:D9:51:AF:84",
+      "api.bluez5.path": "/org/bluez/hci0/dev_31_92_D9_51_AF_84",
+      "device.api": "bluez5",
+      "device.bus": "bluetooth",
+      "device.description": "Cubitt Headphones",
+      "device.alias": "Cubitt Headphones",
+      "device.form_factor": "headset",
+      "device.icon_name": "audio-headset",
+      "device.string": "31:92:D9:51:AF:84",
+      "device.class": "sound"
+    },
+    "profiles": {
+      "off": {
+        "description": "Off",
+        "sinks": 0,
+        "sources": 0,
+        "priority": 0,
+        "available": true
+      },
+      "a2dp-sink": {
+        "description": "High Fidelity Playback (A2DP Sink, codec SBC)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 40,
+        "available": true
+      },
+      "a2dp-sink-sbc_xq": {
+        "description": "High Fidelity Playback (A2DP Sink, codec SBC-XQ)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 35,
+        "available": true
+      },
+      "a2dp-sink-aac": {
+        "description": "High Fidelity Playback (A2DP Sink, codec AAC)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 30,
+        "available": true
+      },
+      "a2dp-sink-aptx": {
+        "description": "High Fidelity Playback (A2DP Sink, codec aptX)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 32,
+        "available": true
+      },
+      "a2dp-sink-aptx_hd": {
+        "description": "High Fidelity Playback (A2DP Sink, codec aptX HD)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 33,
+        "available": true
+      },
+      "a2dp-sink-ldac": {
+        "description": "High Fidelity Playback (A2DP Sink, codec LDAC)",
+        "sinks": 1,
+        "sources": 0,
+        "priority": 34,
+        "available": false
+      },
+      "headset-head-unit": {
+        "description": "Headset Head Unit (HSP/HFP, codec CVSD)",
+        "sinks": 1,
+        "sources": 1,
+        "priority": 20,
+        "available": true
+      },
+      "headset-head-unit-msbc": {
+        "description": "Headset Head Unit (HSP/HFP, codec mSBC)",
+        "sinks": 1,
+        "sources": 1,
+        "priority": 21,
+        "available": true
+      }
+    },
+    "active_profile": "a2dp-sink-sbc_xq",
+    "ports": {}
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "id": 78,
+    "type": "PipeWire:Interface:Device",
+    "version": 3,
+    "permissions": [ "r", "w", "x", "m" ],
+    "info": {
+      "props": {
+        "api.bluez5.address": "31:92:D9:51:AF:84",
+        "api.bluez5.path": "/org/bluez/hci0/dev_31_92_D9_51_AF_84",
+        "device.api": "bluez5",
+        "device.description": "Cubitt Headphones",
+        "device.form_factor": "headset",
+        "media.class": "Audio/Device",
+        "object.id": 78
+      }
+    }
+  },
+  {
+    "id": 79,
+    "type": "PipeWire:Interface:Node",
+    "version": 3,
+    "permissions": [ "r", "w", "x", "m" ],
+    "info": {
+      "props": {
+        "api.bluez5.address": "31:92:D9:51:AF:84",
+        "api.bluez5.codec": "sbc_xq",
+        "api.bluez5.profile": "a2dp-sink",
+        "api.bluez5.transport": "",
+        "device.id": 78,
+        "media.class": "Audio/Sink",
+        "node.description": "Cubitt Headphones",
+        "node.name": "bluez_output.31_92_D9_51_AF_84.1",
+        "object.id": 79
+      }
+    }
+  },
+  {
+    "id": 80,
+    "type": "PipeWire:Interface:Node",
+    "version": 3,
+    "permissions": [ "r", "w", "x", "m" ],
+    "info": {
+      "props": {
+        "api.bluez5.address": "31:92:D9:51:AF:84",
+        "api.bluez5.codec": "msbc",
+        "api.bluez5.profile": "headset-head-unit",
+        "device.id": 78,
+        "media.class": "Audio/Source",
+        "node.name": "bluez_input.31_92_D9_51_AF_84.0",
+        "object.id": 80
+      }
+    }
+  }
+]
